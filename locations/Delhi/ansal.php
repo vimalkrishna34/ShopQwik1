@@ -1,6 +1,9 @@
 <?php
+include '../../includes/header.php';
+
 $brands = [
     "Apparel (Fashion)" => [
+<<<<<<< HEAD
         ["name" => "H&M", "image" => "https://i.pinimg.com/736x/57/7e/07/577e0712b26a7f9ab959a9a0f44148c4.jpg", "price" => "Rs 299", "page" => "HnM.php"],
         ["name" => "Levi's", "image" => "https://i.pinimg.com/736x/ee/63/37/ee63379d7c782a0f4484d532b616cb10.jpg", "price" => "Rs 499", "page" => "levis.php"],
         ["name" => "Tommy Hilfiger", "image" => "https://i.pinimg.com/736x/0b/b4/f1/0bb4f1b22c1a87598e69647051d0be26.jpg", "price" => "Rs 899", "page" => "tommy.php"],
@@ -24,13 +27,37 @@ $brands = [
         ["name" => "Dyson", "image" => "https://i.pinimg.com/736x/9d/d4/c3/9dd4c3fc4eee3bd124c787af1552e0b2.jpg", "price" => "Rs 34999", "page" => "dyson.php"],
         ["name" => "Croma", "image" => "https://i.pinimg.com/736x/29/72/92/297292433b1a8929c9fc5ee0be2ae6a1.jpg", "price" => "Rs 14999", "page" => "croma.php"]
     ]
+=======
+        ["name" => "H&M", "image" => "https://i.pinimg.com/736x/57/7e/07/577e0712b26a7f9ab959a9a0f44148c4.jpg", "price" => "Rs 299"],
+        ["name" => "Levi's", "image" => "https://i.pinimg.com/736x/ee/63/37/ee63379d7c782a0f4484d532b616cb10.jpg", "price" => "Rs 499"],
+        ["name" => "Tommy Hilfiger", "image" => "https://i.pinimg.com/736x/0b/b4/f1/0bb4f1b22c1a87598e69647051d0be26.jpg", "price" => "Rs 899"],
+        ["name" => "Nike", "image" => "https://i.pinimg.com/736x/70/e7/8c/70e78cf8055014329bd034c8910a18f2.jpg", "price" => "Rs 599"],
+        ["name" => "Adidas", "image" => "https://i.pinimg.com/736x/8b/7b/fa/8b7bfa40460a48aff5fa938fe7a553da.jpg", "price" => "Rs 799"],
+        ["name" => "Puma", "image" => "https://i.pinimg.com/736x/66/f1/ed/66f1edd300d1f37b10f6922261313014.jpg", "price" => "Rs 399"],
+    ],
+    "Skincare" => [
+        ["name" => "The Body Shop", "image" => "https://i.pinimg.com/736x/64/c2/2f/64c22f329538d382e255a3c825b097d2.jpg", "price" => "Rs 699"],
+        ["name" => "Ordinary", "image" => "https://i.pinimg.com/736x/bd/57/fe/bd57fecc2efd21d5a34489034db24f26.jpg", "price" => "Rs 999"],
+        ["name" => "Kama Ayurveda", "image" => "https://i.pinimg.com/736x/14/49/d9/1449d9610b87f237515ad706861b1fdf.jpg", "price" => "Rs 899"],
+        ["name" => "L'Oreal", "image" => "https://i.pinimg.com/736x/c8/9b/28/c89b283f9f6f516ec6af70277279e930.jpg", "price" => "Rs 499"],
+        ["name" => "Neutrogena", "image" => "https://i.pinimg.com/736x/99/ed/a2/99eda2e791bacce18724ffcb374d088e.jpg", "price" => "Rs 799"],
+        ["name" => "Clinique", "image" => "https://i.pinimg.com/736x/26/fe/7b/26fe7bcfe8ecc1a578b1e98d5d2f1ba6.jpg", "price" => "Rs 1,099"],
+    ],
+    "Electronics" => [
+        ["name" => "Sony", "image" => "https://i.pinimg.com/736x/f7/e9/11/f7e911d8e69e2c4a0ea8d4e750f5d2b8.jpg", "price" => "Rs 25,999"],
+        ["name" => "Samsung", "image" => "https://i.pinimg.com/736x/f8/e3/4a/f8e34a4763987dcab1c15888cb0830d0.jpg", "price" => "Rs 12,999"],
+        ["name" => "Bose", "image" => "https://i.pinimg.com/736x/5d/a9/c6/5da9c61c2fcd5b5adf9b45188b3e1092.jpg", "price" => "Rs 19,999"],
+        ["name" => "Apple", "image" => "https://i.pinimg.com/736x/60/6b/c0/606bc0717982547e555a514b479365a0.jpg", "price" => "Rs 79,999"],
+        ["name" => "Xiaomi", "image" => "https://i.pinimg.com/736x/69/ba/89/69ba89a243918800df9f551dc563d5ab.jpg", "price" => "Rs 9,999"],
+        ["name" => "JBL", "image" => "https://i.pinimg.com/736x/d5/35/85/d53585d81a4c56d342b90d1d80589acc.jpg", "price" => "Rs 5,499"],
+    ],
+>>>>>>> 0121dbcfb33bc520c4ff1aba48f1b1e232d87ecd
 ];
 
-// Shuffle brands within each category
 foreach ($brands as &$items) {
     shuffle($items);
 }
-unset($items); // Unset reference to prevent accidental overwriting
+unset($items);
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +70,16 @@ unset($items); // Unset reference to prevent accidental overwriting
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
+<<<<<<< HEAD
             background: linear-gradient(135deg,rgb(198, 178, 152),rgb(245, 212, 175));
+=======
+            background: linear-gradient(135deg, rgb(245, 239, 227), rgb(248, 242, 235));
+>>>>>>> 0121dbcfb33bc520c4ff1aba48f1b1e232d87ecd
             font-family: 'Poppins', sans-serif;
-            margin: 0;
+            margin-top: 40px;
             padding: 50px;
         }
+<<<<<<< HEAD
         .card-container {
             height: 100%;
             display: flex;
@@ -89,24 +121,61 @@ unset($items); // Unset reference to prevent accidental overwriting
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
+=======
+        .scroll-container-wrapper {
+            position: relative;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 15px 0;
+            white-space: nowrap;
+            scrollbar-width: none;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            min-width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 10px;
             text-align: center;
-            color: #5a4a42;
-            font-family: 'Playfair Display', serif;
+            transition: transform 0.3s;
         }
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #5a4a42;
-            font-family: 'Playfair Display', serif;
+        .card:hover {
+            transform: scale(1.05);
+>>>>>>> 0121dbcfb33bc520c4ff1aba48f1b1e232d87ecd
         }
+        .card-img-top {
+            height: 180px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: rgb(85, 83, 83);
+            text-align: left;
+        }
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+<<<<<<< HEAD
         .category-section {
             margin-bottom: 3rem;
             padding: 2rem;
@@ -122,6 +191,30 @@ unset($items); // Unset reference to prevent accidental overwriting
         .col-md-3 {
             flex: 0 0 calc(25% - 1.5rem);
             max-width: calc(25% - 1.5rem);
+=======
+        .scroll-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .scroll-left {
+            left: -30px;
+        }
+        .scroll-right {
+            right: -30px;
+        }
+        .custom-btn {
+    background-color:rgb(133, 111, 74) !important; /* Change to any color */
+    border-color:rgb(146, 117, 64) !important;
+    color: white !important;
+}
+.custom-btn:hover {
+    background-color:rgb(61, 52, 29) !important; /* Darker shade on hover */
+}
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                display: none;
+            }
+>>>>>>> 0121dbcfb33bc520c4ff1aba48f1b1e232d87ecd
         }
         .brand-link {
             text-decoration: none;
@@ -133,12 +226,15 @@ unset($items); // Unset reference to prevent accidental overwriting
 </head>
 <body>
     <div class="container">
-        <h1>Top Brands in Ansal Mall Delhi</h1>
+        <h1 class="text-center mb-4">Inorbit Mall Brands</h1>
+
         <?php foreach ($brands as $category => $items): ?>
-            <div class="category-section">
-                <h2><?php echo $category; ?></h2>
-                <div class="row">
+            <h2 class="category-title"><?= $category ?></h2>
+            <div class="scroll-container-wrapper">
+                <button class="scroll-btn scroll-left" onclick="scrollLeft('<?= str_replace(' ', '_', $category) ?>')">&#10094;</button>
+                <div class="scroll-container" id="<?= str_replace(' ', '_', $category) ?>">
                     <?php foreach ($items as $brand): ?>
+<<<<<<< HEAD
                         <div class="col-md-3 mb-4">
                             <a href="<?php echo $brand['page']; ?>" class="brand-link">
                                 <div class="card-container">
@@ -149,11 +245,31 @@ unset($items); // Unset reference to prevent accidental overwriting
                                     </div>
                                 </div>
                             </a>
+=======
+                        <div class="card">
+                            <img src="<?= $brand['image'] ?>" class="card-img-top" alt="<?= $brand['name'] ?>">
+                            <h5 class="card-title"><?= $brand['name'] ?></h5>
+                            <p class="price"><?= $brand['price'] ?></p>
+                            <a href="/Projectt/anj/ShopQwik-main/ShopQwik/locations/delhi/levis.php" class="btn custom-btn">Explore More</a>
+>>>>>>> 0121dbcfb33bc520c4ff1aba48f1b1e232d87ecd
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <button class="scroll-btn scroll-right" onclick="scrollRight('<?= str_replace(' ', '_', $category) ?>')">&#10095;</button>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script>
+        function scrollLeft(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+
+        function scrollRight(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

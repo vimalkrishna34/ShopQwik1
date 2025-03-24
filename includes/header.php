@@ -2,7 +2,12 @@
 
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
+<<<<<<< HEAD
+$theme = isset($theme) ? $theme : 'light'; // Ensure $theme is defined
+=======
+>>>>>>> 9258eb017096f64f357046291a05a8dda9b226ca
 ?>
+
 
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center 
