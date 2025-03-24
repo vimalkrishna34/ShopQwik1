@@ -9,9 +9,12 @@ $_SESSION['cart'] = $_SESSION['cart'] ?? [];
 
 // Sample Levi's products (usually fetched from the database)
 $levisProducts = [
-    ["name" => "Levi's 501 Original Fit Jeans", "price" => 98, "quantity" => 1, "image" => "img/levis_501.jpg"],
-    ["name" => "Levi's Trucker Jacket", "price" => 120, "quantity" => 1, "image" => "img/levis_jacket.jpg"],
-    ["name" => "Levi's Graphic T-Shirt", "price" => 35, "quantity" => 1, "image" => "img/levis_tshirt.jpg"]
+    ["name" => "501 Original Fit Jeans", "price" => 98, "image" => "https://i.pinimg.com/736x/04/69/05/046905c2376ac6ffba78de6b9c9f5142.jpg"],
+    ["name" => "Trucker Jacket", "price" => 120, "image" => "https://i.pinimg.com/736x/5f/84/c0/5f84c0f92f050b97e2f60e7301d07949.jpg"],
+    ["name" => "T-Shirt", "price" => 35, "image" => "https://i.pinimg.com/736x/1c/d8/ee/1cd8ee46014309c093970e7d32123ae5.jpg"],
+    ["name" => "Pants", "price" => 35, "image" => "https://i.pinimg.com/736x/18/31/83/183183d2e3a24de375d3f8f0c792b7ff.jpg"],
+    ["name" => "Flared Skirts", "price" => 35, "image" => "https://i.pinimg.com/736x/47/48/76/47487679ee24578aef85feb97cb7b52a.jpg"],
+    ["name" => "Graphic T-shirts", "price" => 35, "image" => "https://i.pinimg.com/736x/fc/f4/e4/fcf4e4df59476b1f888a5944fbaf2af2.jpg"]
 ];
 
 // Add Levi's products to the cart if they are selected
@@ -19,6 +22,8 @@ if (isset($_POST['add_to_cart'])) {
     $productId = $_POST['product_id'];
     if (isset($levisProducts[$productId])) {
         $product = $levisProducts[$productId];
+        $product['quantity'] = 1; // Ensure quantity starts at 1
+
         // Check if the product is already in the cart
         $found = false;
         foreach ($_SESSION['cart'] as &$item) {
@@ -90,7 +95,7 @@ $total = 0;
             margin: 0 15px;
             text-align: center;
         }
-        .cart-item button {
+        .cart-item .update-quantity {
             background-color: #007bff;
             color: white;
             border: none;
@@ -99,7 +104,7 @@ $total = 0;
             cursor: pointer;
             font-size: 16px;
         }
-        .cart-item button:hover {
+        .cart-item .update-quantity:hover {
             background-color: #0056b3;
         }
         .order-summary {
@@ -107,30 +112,6 @@ $total = 0;
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
-        }
-        .order-summary p {
-            margin: 10px 0;
-            font-size: 18px;
-        }
-        .order-summary b {
-            font-size: 20px;
-            color: #333;
-        }
-        .checkout-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .checkout-btn:hover {
-            background-color: #218838;
         }
         .checkout-btn {
             background-color: #28a745;
@@ -171,7 +152,6 @@ $total = 0;
             font-size: 24px;
         }
     </style>
-
 </head>
 <body>
 
@@ -185,9 +165,9 @@ $total = 0;
                 <div><?= $item['name'] ?></div>
                 <div>$<?= $item['price'] ?></div>
                 <div>
-                    <button>-</button>
+                    <button class="update-quantity" data-action="decrease" data-name="<?= $item['name'] ?>">-</button>
                     <?= $item['quantity'] ?>
-                    <button>+</button>
+                    <button class="update-quantity" data-action="increase" data-name="<?= $item['name'] ?>">+</button>
                 </div>
                 <div>$<?= $item['price'] * $item['quantity'] ?></div>
             </div>
@@ -195,11 +175,9 @@ $total = 0;
         <?php endforeach; ?>
 
         <div class="order-summary">
-            <div>
-                <p>Subtotal: $<?= $total ?></p>
-                <p>Shipping: Free</p>
-                <p><b>Total: $<?= $total ?></b></p>
-            </div>
+            <p>Subtotal: $<?= $total ?></p>
+            <p>Shipping: Free</p>
+            <p><b>Total: $<?= $total ?></b></p>
         </div>
         <button class="checkout-btn">CHECKOUT</button>
         <form method="POST" action="">
@@ -213,21 +191,17 @@ $total = 0;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('.cart-item button').on('click', function() {
+    $('.update-quantity').on('click', function() {
         var button = $(this);
-        var cartItem = button.closest('.cart-item');
-        var productName = cartItem.find('div:eq(1)').text();
-        var action = button.text();
+        var action = button.data('action');
+        var productName = button.data('name');
 
         $.ajax({
             url: 'update_cart.php',
             type: 'POST',
-            data: {
-                product_name: productName,
-                action: action
-            },
-            success: function(response) {
-                location.reload(); // Reload the page to reflect the changes
+            data: { product_name: productName, action: action },
+            success: function() {
+                location.reload();
             }
         });
     });
@@ -236,5 +210,3 @@ $(document).ready(function() {
 
 </body>
 </html>
-
-<?php include '../includes/footer.php'; ?>
