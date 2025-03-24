@@ -51,11 +51,11 @@ $_SESSION['theme'] = $theme;
         $locations = [
             ['name' => 'Delhi', 'img' => '../images/Delhi1.jpeg', 'link' => '../locations/Delhi/Delhi.php'],
             ['name' => 'Hyderabad', 'img' => '../images/Hyderabad1.jpeg', 'link' => '../locations/Hyderabad/Hyderabad.php'],
-            ['name' => 'Bangalore', 'img' => '../images/Bangaluru1.jpeg', 'link' => '../locations/Banglore/Bangalore.php'],
+            ['name' => 'Bangalore', 'img' => '../images/Bangaluru1.jpeg', 'link' => '../locations/Bangalore/Bangalore.php'],
             ['name' => 'Mumbai', 'img' => '../images/Mumbai1.jpeg', 'link' => '../locations/Mumbai/Mumbai.php'],
             ['name' => 'Pune', 'img' => '../images/Pune1.jpeg', 'link' => '../locations/Pune/Pune.php'],
             ['name' => 'Kochi', 'img' => '../images/Kochi1.jpeg', 'link' => '../locations/Kochi/Kochi.php'],
-            ['name' => 'Chennai', 'img' => '../images/Chennai1.jpeg', 'link' => '../locations/Chennai//Chennai.php']
+            ['name' => 'Chennai', 'img' => '../images/Chennai1.jpeg', 'link' => '../locations/Chennai/Chennai.php']
         ];
         ?>
 
