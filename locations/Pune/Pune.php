@@ -7,7 +7,7 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangalore Malls - ShopQwik</title>
+    <title>Pune Malls - ShopQwik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -49,24 +49,24 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
         }
     </style>
 </head>
-<body >
+<body>
 
 <?php include '../../includes/header.php'; ?>
 
 <div class="text-center py-5 header-bg shadow mb-4">
-    <h1 class="display-5 fw-bold" style="margin-top: 50px;">Top Malls in Bangalore</h1>
+    <h1 class="display-5 fw-bold" style="margin-top: 50px;">Top Malls in Pune</h1>
 </div>
 
 <div class="container py-5">
     <div class="row g-4">
         <?php
         $malls = [
-            ["name" => "Orion Mall", "image" => "https://i.pinimg.com/736x/d5/9c/49/d59c4948d74a4486ac37e326267546a6.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/Orionbrands.php', 'description' => 'A premium shopping and entertainment destination.'],
-            ["name" => "Phoenix Marketcity", "image" => "https://i.pinimg.com/736x/f5/01/88/f501881c2fd9d6eb403ddd72f94580cc.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/phoenix.php', 'description' => 'One of the largest malls in Bangalore.'],
-            ["name" => "UB City Mall", "image" => "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/2024/03/The-Collection.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/Ubcity.php', 'description' => 'Luxury shopping and fine dining experience.'],
-            ["name" => "Forum Mall", "image" => "https://cdn.shopify.com/s/files/1/0562/4011/1678/files/SB3.jpg?v=1709534517", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/Forum.php', 'description' => 'A popular shopping and hangout spot.'],
-            ["name" => "Garuda Mall", "image" => "images/garuda-mall.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/Garuda.php', 'description' => 'Popular for fashion and lifestyle stores.'],
-            ["name" => "Mantri Square", "image" => "images/mantri-square.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Bangalore/Mantri.php', 'description' => 'One of the largest malls in South India.'],
+            ["name" => "Phoenix Marketcity", "image" => "https://www.phoenixmarketcity.com/pune/wp-content/uploads/sites/5/2022/03/Pune-Banner-1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/phoenix.php', 'description' => 'Pune\'s largest mall with 1.2 million sq.ft of retail space.'],
+            ["name" => "Amanora Mall", "image" => "https://www.amanoratown.com/wp-content/uploads/2021/12/mall-gallery-1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/amanora.php', 'description' => 'Premium shopping destination in Hadapsar.'],
+            ["name" => "Kumar Pacific Mall", "image" => "https://content.jdmagicbox.com/comp/pune/h3/020pxx20.xx20.170824140212.i5h3/catalogue/kumar-pacific-mall-shivajinagar-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/kumar.php', 'description' => 'Luxury mall in the heart of Pune at Shivajinagar.'],
+            ["name" => "Westend Mall", "image" => "https://content.jdmagicbox.com/comp/pune/g5/020pxx20.xx20.170824140212.i5g5/catalogue/westend-mall-avinash-society-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/westend.php', 'description' => 'Popular shopping and entertainment hub in Aundh.'],
+            ["name" => "SGS Mall", "image" => "https://content.jdmagicbox.com/comp/pune/i1/020pxx20.xx20.170824140212.i5i1/catalogue/sgs-mall-mall-mg-road-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/sgs.php', 'description' => 'Historic mall on MG Road with premium brands.'],
+            ["name" => "Seasons Mall", "image" => "https://www.seasonsmall.com/wp-content/uploads/2022/03/seasons-mall-pune.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/seasons.php', 'description' => 'Modern lifestyle mall in Magarpatta City.'],
         ];
 
         foreach ($malls as $mall) { ?>
