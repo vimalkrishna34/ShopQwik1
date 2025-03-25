@@ -60,6 +60,7 @@ $total = 0;
             font-family: 'Arial', sans-serif;
             background-color: #f8f8f8;
             color: #333;
+            margin-top: 50px;
         }
         .container {
             width: 90%;
@@ -179,7 +180,7 @@ $total = 0;
             <p>Shipping: Free</p>
             <p><b>Total: $<?= $total ?></b></p>
         </div>
-        <button class="checkout-btn">CHECKOUT</button>
+        <a href="checkout.php"><button class="checkout-btn">CHECKOUT</button></a>
         <form method="POST" action="">
             <button type="submit" name="clear_cart" class="clear-cart-btn">CLEAR CART</button>
         </form>

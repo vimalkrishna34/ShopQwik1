@@ -86,7 +86,7 @@ include 'includes/header.php';
         }
     </script>
 </head>
-<body class="h-screen bg-[#FAF3E0] dark:bg-gray-900 flex flex-col">
+<body class="h-screen bg-[#FAF3E0] dark:bg-gray-900 flex flex-col" style="margin-top: 90px;">
     <!-- Header will be included here from header.php -->
     
     <main class="flex-grow flex items-center justify-center">
@@ -94,11 +94,6 @@ include 'includes/header.php';
 
             <!-- Theme Toggle Button -->
             <div class="absolute top-4 right-4">
-                <button id="theme-toggle" onclick="toggleTheme()"
-                   class="px-4 py-2 rounded-lg transition capitalize
-                          <?= $theme === 'dark' ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300' ?>">
-                    <?= $theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode' ?>
-                </button>
             </div>
 
             <!-- Success Message Popup -->

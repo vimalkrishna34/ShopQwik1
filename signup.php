@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            margin-top: 60px;
         }
         .signup-container {
             background-color: #fff;

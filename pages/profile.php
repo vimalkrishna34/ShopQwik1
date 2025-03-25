@@ -63,7 +63,7 @@ $_SESSION['theme'] = $theme;
         }
     </script>
 </head>
-<body class="bg-[#FAF3E0] dark:bg-gray-900 min-h-screen flex flex-col">
+<body class="bg-[#FAF3E0] dark:bg-gray-900 min-h-screen flex flex-col" style="margin-top: 80px;">
     
     <!-- Theme Toggle Button -->
     <div class="absolute top-4 right-4">
@@ -110,7 +110,7 @@ $_SESSION['theme'] = $theme;
         <div class="w-2/3 p-8">
             <h2 class="text-2xl font-bold text-[#8B4513] dark:text-amber-200">Logout</h2>
             <p class="text-gray-600 dark:text-gray-300 mt-2">Hello, <span class="font-semibold text-[#8B4513] dark:text-amber-300"><?php echo htmlspecialchars($username); ?></span>! Are you sure you want to log out?</p>
-            <a href="logout.php" class="mt-4 inline-block px-6 py-2 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 rounded-full transition">
+            <a href="http://localhost/PROJECTT/Anj/ShopQwik-main/ShopQwik/logout.php" class="mt-4 inline-block px-6 py-2 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 rounded-full transition">
                 Yes, Logout
             </a>
         </div>

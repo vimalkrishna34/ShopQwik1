@@ -1,36 +1,37 @@
 <?php
+include '../../includes/header.php';
+
 $brands = [
     "Apparel (Fashion)" => [
-        ["name" => "H&M", "image" => "https://i.pinimg.com/736x/57/7e/07/577e0712b26a7f9ab959a9a0f44148c4.jpg", "price" => "Rs 299"],
-        ["name" => "Levi's", "image" => "https://i.pinimg.com/736x/ee/63/37/ee63379d7c782a0f4484d532b616cb10.jpg", "price" => "Rs 499"],
-        ["name" => "Tommy Hilfiger", "image" => "https://i.pinimg.com/736x/0b/b4/f1/0bb4f1b22c1a87598e69647051d0be26.jpg", "price" => "Rs 899"],
-        ["name" => "United Colors of Benetton", "image" => "https://i.pinimg.com/736x/39/9b/f5/399bf539f57c11bfe889186cf3e528b7.jpg", "price" => "Rs 1299"],
-        ["name" => "Calvin Klein Jeans", "image" => "https://i.pinimg.com/736x/95/84/5e/95845e277a65a54cf156615d5c6a499d.jpg", "price" => "Rs 599"],
-        ["name" => "Vero Moda", "image" => "https://i.pinimg.com/736x/96/6b/2d/966b2dd57c3b5c3d5c315c7a39593afc.jpg", "price" => "Rs 799"]
+        ["name" => "H&M", "image" => "https://i.pinimg.com/736x/57/7e/07/577e0712b26a7f9ab959a9a0f44148c4.jpg", "price" => "Rs 299", "page" => "/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Brands/HnM.php"],
+        ["name" => "Levi's", "image" => "https://i.pinimg.com/736x/ee/63/37/ee63379d7c782a0f4484d532b616cb10.jpg", "price" => "Rs 499", "page" => "/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Brands/Fashion/Levis.php"],
+        ["name" => "Tommy Hilfiger", "image" => "https://i.pinimg.com/736x/0b/b4/f1/0bb4f1b22c1a87598e69647051d0be26.jpg", "price" => "Rs 899", "page" => "tommy_hilfiger.php"],
+        ["name" => "Nike", "image" => "https://i.pinimg.com/736x/70/e7/8c/70e78cf8055014329bd034c8910a18f2.jpg", "price" => "Rs 599", "page" => "nike.php"],
+        ["name" => "Adidas", "image" => "https://i.pinimg.com/736x/8b/7b/fa/8b7bfa40460a48aff5fa938fe7a553da.jpg", "price" => "Rs 799", "page" => "adidas.php"],
+        ["name" => "Puma", "image" => "https://i.pinimg.com/736x/66/f1/ed/66f1edd300d1f37b10f6922261313014.jpg", "price" => "Rs 399", "page" => "puma.php"],
     ],
-    "Beauty & Personal Care" => [
-        ["name" => "MAC", "image" => "https://i.pinimg.com/736x/49/b4/9c/49b49c36fd20a850d9b13026cc7f3a7c.jpg", "price" => "Rs 399"],
-        ["name" => "Nykaa Luxe", "image" => "https://i.pinimg.com/736x/b6/81/66/b68166cf475aa56e31abe8bc45fcb6da.jpg", "price" => "Rs 999"],
-        ["name" => "The Body Shop", "image" => "https://i.pinimg.com/736x/64/c2/2f/64c22f329538d382e255a3c825b097d2.jpg", "price" => "Rs 499"],
-        ["name" => "Bath & Body Works", "image" => "https://i.pinimg.com/736x/d4/3f/6d/d43f6de5b64cd90092be7fa6b037ce72.jpg", "price" => "Rs 699"],
-        ["name" => "Forest Essentials", "image" => "https://i.pinimg.com/736x/8d/6d/10/8d6d10573834f788d279db27adfbebe0.jpg", "price" => "Rs 899"],
-        ["name" => "Victoria's Secret", "image" => "https://i.pinimg.com/736x/ec/db/a9/ecdba95c812c88739085d882f04ed6f5.jpg", "price" => "Rs 1299"]
+    "Skincare" => [
+        ["name" => "The Body Shop", "image" => "https://i.pinimg.com/736x/64/c2/2f/64c22f329538d382e255a3c825b097d2.jpg", "price" => "Rs 699", "page" => "body_shop.php"],
+        ["name" => "Ordinary", "image" => "https://i.pinimg.com/736x/bd/57/fe/bd57fecc2efd21d5a34489034db24f26.jpg", "price" => "Rs 999", "page" => "ordinary.php"],
+        ["name" => "Kama Ayurveda", "image" => "https://i.pinimg.com/736x/14/49/d9/1449d9610b87f237515ad706861b1fdf.jpg", "price" => "Rs 899", "page" => "kama_ayurveda.php"],
+        ["name" => "L'Oreal", "image" => "https://i.pinimg.com/736x/c8/9b/28/c89b283f9f6f516ec6af70277279e930.jpg", "price" => "Rs 499", "page" => "loreal.php"],
+        ["name" => "Neutrogena", "image" => "https://i.pinimg.com/736x/99/ed/a2/99eda2e791bacce18724ffcb374d088e.jpg", "price" => "Rs 799", "page" => "neutrogena.php"],
+        ["name" => "Clinique", "image" => "https://i.pinimg.com/736x/26/fe/7b/26fe7bcfe8ecc1a578b1e98d5d2f1ba6.jpg", "price" => "Rs 1,099", "page" => "clinique.php"],
     ],
-    "Electronics & Appliances" => [
-        ["name" => "Samsung", "image" => "https://i.pinimg.com/736x/2e/4d/a4/2e4da4a6d670b8d59c15f28853e895c3.jpg", "price" => "Rs 29999"],
-        ["name" => "Reliance Digital", "image" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUW51UZSXoUPzn_ojuaR5NrCcIO2nuHf8iZA&s", "price" => "Rs 19999"],
-        ["name" => "Apple (Aptronix)", "image" => "https://i.pinimg.com/736x/60/6b/c0/606bc0717982547e555a514b479365a0.jpg", "price" => "Rs 89999"],
-        ["name" => "Bose", "image" => "https://i.pinimg.com/736x/96/29/ef/9629efc8a4be4fd1600a9bb3940fd89c.jpg", "price" => "Rs 24999"],
-        ["name" => "Dyson", "image" => "https://i.pinimg.com/736x/9d/d4/c3/9dd4c3fc4eee3bd124c787af1552e0b2.jpg", "price" => "Rs 34999"],
-        ["name" => "Croma", "image" => "https://i.pinimg.com/736x/29/72/92/297292433b1a8929c9fc5ee0be2ae6a1.jpg", "price" => "Rs 14999"]
-    ]
+    "Electronics" => [
+        ["name" => "Sony", "image" => "https://i.pinimg.com/736x/f7/e9/11/f7e911d8e69e2c4a0ea8d4e750f5d2b8.jpg", "price" => "Rs 25,999", "page" => "sony.php"],
+        ["name" => "Samsung", "image" => "https://i.pinimg.com/736x/f8/e3/4a/f8e34a4763987dcab1c15888cb0830d0.jpg", "price" => "Rs 12,999", "page" => "samsung.php"],
+        ["name" => "Bose", "image" => "https://i.pinimg.com/736x/5d/a9/c6/5da9c61c2fcd5b5adf9b45188b3e1092.jpg", "price" => "Rs 19,999", "page" => "bose.php"],
+        ["name" => "Apple", "image" => "https://i.pinimg.com/736x/60/6b/c0/606bc0717982547e555a514b479365a0.jpg", "price" => "Rs 79,999", "page" => "apple.php"],
+        ["name" => "Xiaomi", "image" => "https://i.pinimg.com/736x/69/ba/89/69ba89a243918800df9f551dc563d5ab.jpg", "price" => "Rs 9,999", "page" => "xiaomi.php"],
+        ["name" => "JBL", "image" => "https://i.pinimg.com/736x/d5/35/85/d53585d81a4c56d342b90d1d80589acc.jpg", "price" => "Rs 5,499", "page" => "jbl.php"],
+    ],
 ];
 
-// Shuffle brands within each category
 foreach ($brands as &$items) {
     shuffle($items);
 }
-unset($items); // Unset reference to prevent accidental overwriting
+unset($items);
 ?>
 
 <!DOCTYPE html>
@@ -38,106 +39,126 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>Ansal Mall Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f4f4f9;
-            font-family: 'Arial', sans-serif;
-            margin: 50px;
+            background: linear-gradient(135deg, rgb(245, 239, 227), rgb(248, 242, 235));
+            font-family: 'Poppins', sans-serif;
+            margin-top: 40px;
+            padding: 50px;
         }
-        .card-img-top {
-            height: 250px; /* Increased image size */
-            width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
+        .scroll-container-wrapper {
+            position: relative;
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 15px 0;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
         }
         .card {
-            margin-bottom: 1rem;
-            border: none;
+            min-width: 250px;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.05);
         }
-        .card-body {
-            padding: 1.5rem;
-            text-align: center;
-            background-color: #ffffff;
+        .card-img-top {
+            height: 180px;
+            object-fit: contain;
+            border-radius: 5px;
         }
-        .card-text {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-            color: #333;
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: rgb(85, 83, 83);
+            text-align: left;
         }
-        .price {
-            color: #007bff;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        .btn-add {
-            background-color: #28a745;
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 10px 15px;
             cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.3s;
         }
-        .btn-add:hover {
-            background-color: #218838;
+        .scroll-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .scroll-left {
+            left: -30px;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #343a40;
+        .scroll-right {
+            right: -30px;
         }
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #495057;
+        .custom-btn {
+            background-color: rgb(133, 111, 74) !important;
+            border-color: rgb(146, 117, 64) !important;
+            color: white !important;
         }
-        .category-section {
-            margin-bottom: 3rem;
-            padding: 1rem;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .custom-btn:hover {
+            background-color: rgb(61, 52, 29) !important;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Top Brands in Chanakya Mall Delhi</h1>
+        <h1 class="text-center mb-4">Chanakya Mall Brands</h1>
+
         <?php foreach ($brands as $category => $items): ?>
-            <div class="category-section">
-                <h2><?php echo $category; ?></h2>
-                <div class="row">
+            <h2 class="category-title"><?= $category ?></h2>
+            <div class="scroll-container-wrapper">
+                <button class="scroll-btn scroll-left" onclick="scrollLeft('<?= str_replace(' ', '_', $category) ?>')">&#10094;</button>
+                <div class="scroll-container" id="<?= str_replace(' ', '_', $category) ?>">
                     <?php foreach ($items as $brand): ?>
-                        <div class="col-md-3 mb-4">
-                            <div class="card">
-                                <img src="<?php echo $brand['image']; ?>" class="card-img-top" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
-                                <div class="card-body">
-                                    <p class="card-text"><?php echo $brand['name']; ?></p>
-                                    <p class="price"><?php echo $brand['price']; ?></p>
-                                    <button class="btn-add">Explore more</button>
-                                </div>
-                            </div>
+                        <div class="card" onclick="window.location.href='<?= $brand['page'] ?>'">
+                            <img src="<?= $brand['image'] ?>" class="card-img-top" alt="<?= $brand['name'] ?>">
+                            <h5 class="card-title"><?= $brand['name'] ?></h5>
+                            <p class="price"><?= $brand['price'] ?></p>
+                            <a href="<?= $brand['page'] ?>" class="btn custom-btn">Explore More</a>
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <button class="scroll-btn scroll-right" onclick="scrollRight('<?= str_replace(' ', '_', $category) ?>')">&#10095;</button>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script>
+        function scrollLeft(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+
+        function scrollRight(containerId) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
