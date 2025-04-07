@@ -5,12 +5,12 @@ session_start();
 
 // Sample Levi's products
 $levisProducts = [
-    ["name" => "501 Original Fit Jeans", "price" => 98, "image" => "https://i.pinimg.com/736x/04/69/05/046905c2376ac6ffba78de6b9c9f5142.jpg"],
-    ["name" => "Trucker Jacket", "price" => 120, "image" => "https://i.pinimg.com/736x/5f/84/c0/5f84c0f92f050b97e2f60e7301d07949.jpg"],
-    ["name" => "T-Shirt", "price" => 35, "image" => "https://i.pinimg.com/736x/1c/d8/ee/1cd8ee46014309c093970e7d32123ae5.jpg"],
-    ["name" => "Pants", "price" => 35, "image" => "https://i.pinimg.com/736x/18/31/83/183183d2e3a24de375d3f8f0c792b7ff.jpg"],
-    ["name" => "Flared Skirts", "price" => 35, "image" => "https://i.pinimg.com/736x/47/48/76/47487679ee24578aef85feb97cb7b52a.jpg"],
-    ["name" => "Graphic T-shirts", "price" => 35, "image" => "https://i.pinimg.com/736x/fc/f4/e4/fcf4e4df59476b1f888a5944fbaf2af2.jpg"]
+    ["name" => "501 Original Fit Jeans", "price" => 2071, "image" => "https://i.pinimg.com/736x/04/69/05/046905c2376ac6ffba78de6b9c9f5142.jpg"],
+    ["name" => "Trucker Jacket", "price" => 3098, "image" => "https://i.pinimg.com/736x/5f/84/c0/5f84c0f92f050b97e2f60e7301d07949.jpg"],
+    ["name" => "T-Shirt", "price" => 599, "image" => "https://i.pinimg.com/736x/1c/d8/ee/1cd8ee46014309c093970e7d32123ae5.jpg"],
+    ["name" => "Pants", "price" => 1099, "image" => "https://i.pinimg.com/736x/18/31/83/183183d2e3a24de375d3f8f0c792b7ff.jpg"],
+    ["name" => "Flared Skirts", "price" => 1567, "image" => "https://i.pinimg.com/736x/47/48/76/47487679ee24578aef85feb97cb7b52a.jpg"],
+    ["name" => "Graphic T-shirts", "price" => 1299, "image" => "https://i.pinimg.com/736x/fc/f4/e4/fcf4e4df59476b1f888a5944fbaf2af2.jpg"]
 
 
 ];
@@ -79,7 +79,7 @@ $levisProducts = [
                 <div class="product-card w-100">
                     <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
                     <h3><?= $product['name'] ?></h3>
-                    <p>$<?= $product['price'] ?></p>
+                    <p>₹<?= $product['price'] ?></p>
                     <form method="POST" action="/PROJECTT/anj/ShopQwik-main/ShopQwik/pages/cart.php">
                         <input type="hidden" name="product_id" value="<?= $id ?>">
                         <button type="submit" name="add_to_cart">Add to Cart</button>

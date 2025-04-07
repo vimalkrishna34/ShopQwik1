@@ -213,13 +213,6 @@ $theme = isset($_COOKIE['site_theme']) ? $_COOKIE['site_theme'] : 'light';
 
 
 <!-- Theme Switcher -->
-<div class="text-center py-6">
-    <a href="?theme=<?= $theme === 'dark' ? 'light' : 'dark' ?>"
-       class="py-3 px-6 rounded-full font-semibold text-lg transition-all
-       <?= $theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-800 hover:bg-gray-900 text-white' ?>">
-        Switch to <?= $theme === 'dark' ? 'Light' : 'Dark' ?> Mode
-    </a>
-</div>
 
 <?php include 'includes/footer.php'; ?>
 
