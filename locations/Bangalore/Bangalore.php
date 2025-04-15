@@ -7,7 +7,7 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banglore Malls - ShopQwik</title>
+    <title>Bangalore Malls - ShopQwik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -156,6 +156,29 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             color: white;
             transform: translateY(-2px);
         }
+        /* Back Button Styles */
+        .back-btn-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            z-index: 1000;
+        }
+        .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(-3px);
+        }
         @media (max-width: 768px) {
             .carousel-control-prev {
                 left: 5px;
@@ -166,6 +189,14 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             .mall-card {
                 max-width: 350px;
             }
+            .back-btn-container {
+                left: 10px;
+                top: 10px;
+            }
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -173,7 +204,14 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 
 <?php include '../../includes/header.php'; ?>
 
-<div class="text-center ">
+<!-- Back Button -->
+<div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+</div>
+
+<div class="text-center">
     <h1 class="display-5 fw-bold" style="margin-top: 50px;"></h1>
 </div>
 
@@ -184,12 +222,12 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             <option value="" selected disabled>Select a Mall</option>
             <?php
             $malls = [
-                ["name" => "Pheonix Marketcity", "image" => "https://girimun.com/wp-content/uploads/2019/07/01-Market-City-Bangalore-1-e1566973184927.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A vibrant destination for fashion, cinema, food, and fun.', 'features' => ['Fashion', 'Cinema', 'Dining']],
-                ["name" => "Orion Mall", "image" => "https://d2w46d36moy248.cloudfront.net/media/homepage_video/omg_1_1_2.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/promenade.php', 'description' => 'An exclusive shopping experience with top international brands.', 'features' => ['Luxury', 'International Brands']],
-                ["name" => "Forum Mall", "image" => "https://cdn.shopify.com/s/files/1/0562/4011/1678/files/SB9.jpg?v=1709534788", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/ambience.php', 'description' => 'A premium mall known for luxury shopping and entertainment.', 'features' => ['Luxury', 'Entertainment', 'Dining']],
-                ["name" => "UB City Mall", "image" => "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/e0/d9/9f/ub-city.jpg?w=1200&h=1200&s=1", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/pacific.php', 'description' => 'A shopping hub featuring fashion, food courts, and events.', 'features' => ['Fashion', 'Food Court', 'Events']],
-                ["name" => "Garuda Mall", "image" => "https://i.pinimg.com/736x/85/3d/37/853d37a47a2c591ba62e62021cb75042.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/ansal.php', 'description' => 'Delhi\'s iconic mall with diverse retail and entertainment spots.', 'features' => ['Retail', 'Entertainment']],
-                ["name" => "Mantri Square", "image" => "https://www.scai.in/wp-content/uploads/2020/11/mantri-square1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/chanakya.php', 'description' => 'A luxurious space for fine dining, fashion, and lifestyle.', 'features' => ['Luxury', 'Fine Dining', 'Fashion']],
+                ["name" => "Phoenix Marketcity", "image" => "https://girimun.com/wp-content/uploads/2019/07/01-Market-City-Bangalore-1-e1566973184927.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A vibrant destination for fashion, cinema, food, and fun.', 'features' => ['Fashion', 'Cinema', 'Dining']],
+                ["name" => "Orion Mall", "image" => "https://d2w46d36moy248.cloudfront.net/media/homepage_video/omg_1_1_2.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'An exclusive shopping experience with top international brands.', 'features' => ['Luxury', 'International Brands']],
+                ["name" => "Forum Mall", "image" => "https://cdn.shopify.com/s/files/1/0562/4011/1678/files/SB9.jpg?v=1709534788", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A premium mall known for luxury shopping and entertainment.', 'features' => ['Luxury', 'Entertainment', 'Dining']],
+                ["name" => "UB City Mall", "image" => "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/e0/d9/9f/ub-city.jpg?w=1200&h=1200&s=1", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A shopping hub featuring fashion, food courts, and events.', 'features' => ['Fashion', 'Food Court', 'Events']],
+                ["name" => "Garuda Mall", "image" => "https://i.pinimg.com/736x/85/3d/37/853d37a47a2c591ba62e62021cb75042.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'Bangalore\'s iconic mall with diverse retail and entertainment spots.', 'features' => ['Retail', 'Entertainment']],
+                ["name" => "Mantri Square", "image" => "https://www.scai.in/wp-content/uploads/2020/11/mantri-square1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A luxurious space for fine dining, fashion, and lifestyle.', 'features' => ['Luxury', 'Fine Dining', 'Fashion']],
             ];
             
             foreach ($malls as $index => $mall) {

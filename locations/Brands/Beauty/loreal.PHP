@@ -11,13 +11,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Create Samsung products table if it doesn't exist
-$createTableSql = "CREATE TABLE IF NOT EXISTS `samsung_products` (
+// Create L'Oreal products table if it doesn't exist
+$createTableSql = "CREATE TABLE IF NOT EXISTS `loreal_products` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(200) NOT NULL,
     `price` INT NOT NULL,
     `image` VARCHAR(400) NOT NULL,
-    `brand` VARCHAR(50) NOT NULL DEFAULT 'Samsung',
+    `brand` VARCHAR(50) NOT NULL DEFAULT 'Loreal Paris',
     PRIMARY KEY (`id`),
     UNIQUE KEY `product_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
@@ -26,28 +26,28 @@ if (!mysqli_query($conn, $createTableSql)) {
     die("Error creating table: " . mysqli_error($conn));
 }
 
-// Samsung products data
-$samsungProducts = [
-    ["name" => "Samsung Galaxy S24 Ultra", "price" => 75071, "image" => "https://www.dxomark.com/wp-content/uploads/medias/post-164446/Samsung-Galaxy-S24-Ultra_A_featured-image-packshot-review.jpg", "brand" => "Samsung"],
-    ["name" => "Galaxy A35 5G", "price" => 30098, "image" => "https://image-us.samsung.com/SamsungUS/home/smartphones/galaxy-a35/awesome-lilac/1_SDSAC-7229-SM-A356_Galaxy-A35_Awesome-Lilac_Lockup-1600x1200.jpg?$product-details-jpg$", "brand" => "Samsung"],
-    ["name" => "Galaxy Tab S9 FE", "price" => 60599, "image" => "https://m.media-amazon.com/images/I/61l5a94VKkL.jpg", "brand" => "Samsung"],
-    ["name" => "Galaxy Book5 Pro, 14\"", "price" => 60099, "image" => "https://image-us.samsung.com/SamsungUS/home/computing/galaxy-books/galaxy-book5-pro/gb5-pro/SDSAC-8554-Book5-Pro_14_US_Gray_001_Front_RGB-1600x1200.jpg", "brand" => "Samsung"],
-    ["name" => "SAMSUNG Galaxy S25 Ultra 5G", "price" => 71567, "image" => "https://rukminim3.flixcart.com/image/850/1000/xif0q/mobile/1/x/3/-original-imah8pdnxdwzazyy.jpeg?q=90&crop=false", "brand" => "Samsung"],
-    ["name" => "SAMSUNG Galaxy Watch FE", "price" => 91299, "image" => "https://rukminim2.flixcart.com/image/850/1000/xif0q/smartwatch/1/r/h/-original-imah5fafm32rfa7n.jpeg?q=90&crop=false", "brand" => "Samsung"]
+// L'Oreal products data
+$lorealProducts = [
+    ["name" => "L'Oreal Paris Revitalift Serum", "price" => 1299, "image" => "https://i.pinimg.com/736x/1a/ff/3f/1aff3f795eb659270f5ee8375d57eb23.jpg", "brand" => "Loreal Paris"],
+    ["name" => "Telescopic Mascara Black", "price" => 899, "image" => "https://i.pinimg.com/736x/28/bf/22/28bf2205d95abb7778b0eab94a8e308a.jpg", "brand" => "Loreal Paris"],
+    ["name" => "L'Oreal Paris Infallible Concealer", "price" => 599, "image" => "https://i.pinimg.com/736x/44/c6/93/44c693342d60d6b674132e1f2e0a66fb.jpg", "brand" => "Loreal Paris"],
+    ["name" => "L'Oréal Paris Foundation Powder", "price" => 799, "image" => "https://i.pinimg.com/736x/4d/d1/53/4dd15336ac523390556228eda0c9e7df.jpg", "brand" => "Loreal Paris"],
+    ["name" => "L'Oréal Paris Foundation", "price" => 1299, "image" => "https://i.pinimg.com/736x/c0/a8/99/c0a899c613ffb6c1755906d6e509d261.jpg", "brand" => "Loreal Paris"],
+    ["name" => "Face Moisturizer", "price" => 499, "image" => "https://i.pinimg.com/736x/0c/40/80/0c40807fbcf9e46bafed3d021f6cf073.jpg", "brand" => "Loreal Paris"]
 ];
 
 // Insert products with duplicate prevention
-foreach ($samsungProducts as $product) {
+foreach ($lorealProducts as $product) {
     // Ensure all required fields exist
     $product = array_merge([
         'name' => '',
         'price' => 0,
         'image' => '',
-        'brand' => 'Samsung'
+        'brand' => 'Loreal Paris'
     ], $product);
 
     // Use INSERT IGNORE to skip duplicates
-    $sql = "INSERT IGNORE INTO `samsung_products` (`name`, `price`, `image`, `brand`) VALUES (
+    $sql = "INSERT IGNORE INTO `loreal_products` (`name`, `price`, `image`, `brand`) VALUES (
         '".mysqli_real_escape_string($conn, $product['name'])."', 
         ".intval($product['price']).", 
         '".mysqli_real_escape_string($conn, $product['image'])."',
@@ -59,11 +59,11 @@ foreach ($samsungProducts as $product) {
 }
 
 // Fetch all products from database for display
-$result = mysqli_query($conn, "SELECT * FROM samsung_products");
+$result = mysqli_query($conn, "SELECT * FROM loreal_products");
 $dbProducts = [];
 while ($row = mysqli_fetch_assoc($result)) {
     // Ensure all fields exist
-    $row['brand'] = $row['brand'] ?? 'Samsung';
+    $row['brand'] = $row['brand'] ?? 'Loreal Paris';
     $dbProducts[] = $row;
 }
 
@@ -78,7 +78,7 @@ include '../../../includes/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samsung Electronics</title>
+    <title>L'Oreal Paris Beauty Products</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .product-card {
@@ -120,11 +120,11 @@ include '../../../includes/header.php';
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 15px;
-            color: #333;
+            color: #e53935;
         }
 
         .product-card button {
-            background-color: #1428a0;
+            background-color: #0055a5;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -135,11 +135,11 @@ include '../../../includes/header.php';
         }
 
         .product-card button:hover {
-            background-color: #0e1d7a;
+            background-color: #003d7a;
         }
 
         .brand-badge {
-            background-color: #1428a0;
+            background-color: #0055a5;
             color: white;
             padding: 3px 8px;
             border-radius: 4px;
@@ -151,7 +151,7 @@ include '../../../includes/header.php';
         .page-title {
             text-align: center;
             margin-bottom: 40px;
-            color: #1428a0;
+            color: #0055a5;
             font-weight: bold;
         }
     </style>
@@ -159,7 +159,7 @@ include '../../../includes/header.php';
 <body>
 
 <div class="container" style="margin-top: 80px;">
-    <h1 class="page-title">Samsung Electronics Collection</h1>
+    <h1 class="page-title">L'Oreal Paris Beauty Collection</h1>
     <div class="row">
         <?php foreach ($dbProducts as $product): ?>
             <?php 
@@ -167,7 +167,7 @@ include '../../../includes/header.php';
             $product['name'] = $product['name'] ?? '';
             $product['price'] = $product['price'] ?? 0;
             $product['image'] = $product['image'] ?? '';
-            $product['brand'] = $product['brand'] ?? 'Samsung';
+            $product['brand'] = $product['brand'] ?? 'Loreal Paris';
             $product['id'] = $product['id'] ?? 0;
             ?>
             <div class="col-md-4">

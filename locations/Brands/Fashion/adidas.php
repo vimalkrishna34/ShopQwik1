@@ -11,13 +11,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Create Samsung products table if it doesn't exist
-$createTableSql = "CREATE TABLE IF NOT EXISTS `samsung_products` (
+// Create Adidas products table if it doesn't exist
+$createTableSql = "CREATE TABLE IF NOT EXISTS `adidas_products` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(200) NOT NULL,
     `price` INT NOT NULL,
     `image` VARCHAR(400) NOT NULL,
-    `brand` VARCHAR(50) NOT NULL DEFAULT 'Samsung',
+    `brand` VARCHAR(50) NOT NULL DEFAULT 'Adidas',
     PRIMARY KEY (`id`),
     UNIQUE KEY `product_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
@@ -26,28 +26,28 @@ if (!mysqli_query($conn, $createTableSql)) {
     die("Error creating table: " . mysqli_error($conn));
 }
 
-// Samsung products data
-$samsungProducts = [
-    ["name" => "Samsung Galaxy S24 Ultra", "price" => 75071, "image" => "https://www.dxomark.com/wp-content/uploads/medias/post-164446/Samsung-Galaxy-S24-Ultra_A_featured-image-packshot-review.jpg", "brand" => "Samsung"],
-    ["name" => "Galaxy A35 5G", "price" => 30098, "image" => "https://image-us.samsung.com/SamsungUS/home/smartphones/galaxy-a35/awesome-lilac/1_SDSAC-7229-SM-A356_Galaxy-A35_Awesome-Lilac_Lockup-1600x1200.jpg?$product-details-jpg$", "brand" => "Samsung"],
-    ["name" => "Galaxy Tab S9 FE", "price" => 60599, "image" => "https://m.media-amazon.com/images/I/61l5a94VKkL.jpg", "brand" => "Samsung"],
-    ["name" => "Galaxy Book5 Pro, 14\"", "price" => 60099, "image" => "https://image-us.samsung.com/SamsungUS/home/computing/galaxy-books/galaxy-book5-pro/gb5-pro/SDSAC-8554-Book5-Pro_14_US_Gray_001_Front_RGB-1600x1200.jpg", "brand" => "Samsung"],
-    ["name" => "SAMSUNG Galaxy S25 Ultra 5G", "price" => 71567, "image" => "https://rukminim3.flixcart.com/image/850/1000/xif0q/mobile/1/x/3/-original-imah8pdnxdwzazyy.jpeg?q=90&crop=false", "brand" => "Samsung"],
-    ["name" => "SAMSUNG Galaxy Watch FE", "price" => 91299, "image" => "https://rukminim2.flixcart.com/image/850/1000/xif0q/smartwatch/1/r/h/-original-imah5fafm32rfa7n.jpeg?q=90&crop=false", "brand" => "Samsung"]
+// Adidas products data
+$adidasProducts = [
+    ["name" => "Forum Low Shoes", "price" => 4071, "image" => "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/09c5ea6df1bd4be6baaaac5e003e7047_9366/Forum_Low_Shoes_White_FY7756_01_standard.jpg", "brand" => "Adidas"],
+    ["name" => "adidas Superstar Shoes", "price" => 3098, "image" => "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7ed0855435194229a525aad6009a0497_9366/Superstar_Shoes_White_EG4958_01_standard.jpg", "brand" => "Adidas"],
+    ["name" => "Shop adidas Campus Shoes", "price" => 3599, "image" => "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e1436b4bb7bb46e7abe4863d1fb611b7_9366/FLAIR_MODE_SHOES_Grey_IU6286_01_standard.jpg", "brand" => "Adidas"],
+    ["name" => "Adifom Superstar Shoes", "price" => 4099, "image" => "https://assets.adidas.com/images/w_600,f_auto,q_auto/15efd399b216463e9392af5700c52792_9366/Adifom_Superstar_Shoes_White_HQ8750_01_standard.jpg", "brand" => "Adidas"],
+    ["name" => "adidas Originals Samba Shoes", "price" => 3567, "image" => "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4a46e180c40643c8b436af9c017a4615_9366/adidas_Originals_Samba_Shoes_Green_ID2054_01_standard.jpg", "brand" => "Adidas"],
+    ["name" => "adidas Samba OG Shoes", "price" => 4299, "image" => "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/011744ef273d4a66b9cc880b980340a2_9366/Samba_OG_Shoes_White_ID0478_01_standard.jpg", "brand" => "Adidas"]
 ];
 
 // Insert products with duplicate prevention
-foreach ($samsungProducts as $product) {
+foreach ($adidasProducts as $product) {
     // Ensure all required fields exist
     $product = array_merge([
         'name' => '',
         'price' => 0,
         'image' => '',
-        'brand' => 'Samsung'
+        'brand' => 'Adidas'
     ], $product);
 
     // Use INSERT IGNORE to skip duplicates
-    $sql = "INSERT IGNORE INTO `samsung_products` (`name`, `price`, `image`, `brand`) VALUES (
+    $sql = "INSERT IGNORE INTO `adidas_products` (`name`, `price`, `image`, `brand`) VALUES (
         '".mysqli_real_escape_string($conn, $product['name'])."', 
         ".intval($product['price']).", 
         '".mysqli_real_escape_string($conn, $product['image'])."',
@@ -59,11 +59,11 @@ foreach ($samsungProducts as $product) {
 }
 
 // Fetch all products from database for display
-$result = mysqli_query($conn, "SELECT * FROM samsung_products");
+$result = mysqli_query($conn, "SELECT * FROM adidas_products");
 $dbProducts = [];
 while ($row = mysqli_fetch_assoc($result)) {
     // Ensure all fields exist
-    $row['brand'] = $row['brand'] ?? 'Samsung';
+    $row['brand'] = $row['brand'] ?? 'Adidas';
     $dbProducts[] = $row;
 }
 
@@ -78,7 +78,7 @@ include '../../../includes/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samsung Electronics</title>
+    <title>Adidas Products</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .product-card {
@@ -104,7 +104,7 @@ include '../../../includes/header.php';
         .product-card img {
             max-width: 100%;
             height: 200px;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 8px;
             margin-bottom: 15px;
         }
@@ -113,7 +113,6 @@ include '../../../includes/header.php';
             font-size: 18px;
             min-height: 50px;
             margin-bottom: 10px;
-            color: #333;
         }
 
         .product-card .price {
@@ -124,7 +123,7 @@ include '../../../includes/header.php';
         }
 
         .product-card button {
-            background-color: #1428a0;
+            background-color: #000;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -135,11 +134,11 @@ include '../../../includes/header.php';
         }
 
         .product-card button:hover {
-            background-color: #0e1d7a;
+            background-color: #333;
         }
 
         .brand-badge {
-            background-color: #1428a0;
+            background-color: #000;
             color: white;
             padding: 3px 8px;
             border-radius: 4px;
@@ -151,7 +150,7 @@ include '../../../includes/header.php';
         .page-title {
             text-align: center;
             margin-bottom: 40px;
-            color: #1428a0;
+            color: #000;
             font-weight: bold;
         }
     </style>
@@ -159,7 +158,7 @@ include '../../../includes/header.php';
 <body>
 
 <div class="container" style="margin-top: 80px;">
-    <h1 class="page-title">Samsung Electronics Collection</h1>
+    <h1 class="page-title">Adidas Originals</h1>
     <div class="row">
         <?php foreach ($dbProducts as $product): ?>
             <?php 
@@ -167,7 +166,7 @@ include '../../../includes/header.php';
             $product['name'] = $product['name'] ?? '';
             $product['price'] = $product['price'] ?? 0;
             $product['image'] = $product['image'] ?? '';
-            $product['brand'] = $product['brand'] ?? 'Samsung';
+            $product['brand'] = $product['brand'] ?? 'Adidas';
             $product['id'] = $product['id'] ?? 0;
             ?>
             <div class="col-md-4">

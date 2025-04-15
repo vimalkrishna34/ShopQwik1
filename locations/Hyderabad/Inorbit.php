@@ -38,99 +38,205 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>Inorbit Mall Hyderabad - ShopQwik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0066CC; /* Inorbit blue */
+            --secondary-color: #FF6600; /* Inorbit orange */
+            --light-bg: #F8F9FA;
+            --dark-text: #333333;
+            --light-text: #666666;
+        }
         body {
-            background-color: #f4f4f9;
-            font-family: 'Arial', sans-serif;
-            margin: 50px;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
         }
-        .card-img-top {
-            height: 250px; /* Increased image size */
-            width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
+        .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .card {
-            margin-bottom: 1rem;
+        .back-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .mall-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .mall-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .mall-subtitle {
+            color: var(--light-text);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+        .mall-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+        }
+        .category-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .category-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .category-title i {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        .brand-card {
+            background: white;
             border: none;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            margin-bottom: 20px;
         }
-        .card:hover {
-            transform: translateY(-5px);
+        .brand-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 102, 204, 0.1);
         }
-        .card-body {
-            padding: 1.5rem;
+        .brand-img-container {
+            background-color: #f8f9fa;
+            padding: 15px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .brand-body {
+            padding: 20px;
             text-align: center;
-            background-color: #ffffff;
         }
-        .card-text {
+        .brand-name {
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .brand-price {
+            color: var(--primary-color);
+            font-weight: bold;
             font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-            color: #333;
+            margin-bottom: 15px;
         }
-        .price {
-            color: #007bff;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        .btn-add {
-            background-color: #28a745;
+        .btn-explore {
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
             width: 100%;
-            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .btn-add:hover {
-            background-color: #218838;
+        .btn-explore:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #343a40;
-        }
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #495057;
-        }
-        .category-section {
-            margin-bottom: 3rem;
-            padding: 1rem;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        @media (max-width: 768px) {
+            .mall-title {
+                font-size: 2rem;
+            }
+            .category-title {
+                font-size: 1.5rem;
+            }
+            .brand-img-container {
+                height: 180px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Top Brands in Inorbit Mall Hyderabad</h1>
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-chevron-left"></i> Back to Malls
+        </button>
+        
+        <div class="mall-header">
+            <h1 class="mall-title">Inorbit Mall Hyderabad</h1>
+            <p class="mall-subtitle">Discover the best shopping experience with top international and national brands</p>
+        </div>
+        
         <?php foreach ($brands as $category => $items): ?>
             <div class="category-section">
-                <h2><?php echo $category; ?></h2>
+                <h2 class="category-title">
+                    <?php 
+                    // Add appropriate icon for each category
+                    if ($category == "Apparel (Fashion)") {
+                        echo '<i class="fas fa-tshirt"></i>';
+                    } elseif ($category == "Beauty & Personal Care") {
+                        echo '<i class="fas fa-spa"></i>';
+                    } else {
+                        echo '<i class="fas fa-plug"></i>';
+                    }
+                    echo $category; 
+                    ?>
+                </h2>
                 <div class="row">
                     <?php foreach ($items as $brand): ?>
-                        <div class="col-md-3 mb-4">
-                            <div class="card">
-                                <img src="<?php echo $brand['image']; ?>" class="card-img-top" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
-                                <div class="card-body">
-                                    <p class="card-text"><?php echo $brand['name']; ?></p>
-                                    <p class="price"><?php echo $brand['price']; ?></p>
-                                    <button class="btn-add">Explore more</button>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="card brand-card h-100">
+                                <div class="brand-img-container">
+                                    <img src="<?php echo $brand['image']; ?>" class="brand-img" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
+                                </div>
+                                <div class="brand-body">
+                                    <h5 class="brand-name"><?php echo $brand['name']; ?></h5>
+                                    <p class="brand-price"><?php echo $brand['price']; ?></p>
+                                    <button class="btn btn-explore">
+                                        Explore <i class="fas fa-arrow-right"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -139,5 +245,16 @@ unset($items); // Unset reference to prevent accidental overwriting
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll to top when page loads
+        window.addEventListener('load', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>

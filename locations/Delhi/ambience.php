@@ -39,7 +39,7 @@ unset($items);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ansal Mall Brands</title>
+    <title>Ambience Mall Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -118,17 +118,54 @@ unset($items);
         .custom-btn:hover {
             background-color: rgb(61, 52, 29) !important;
         }
+        .back-btn {
+            background-color: rgb(133, 111, 74);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-right: 15px;
+            transition: background-color 0.3s;
+        }
+        .back-btn:hover {
+            background-color: rgb(61, 52, 29);
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .back-btn-container {
+            position: absolute;
+            left: 0;
+        }
 
         @media (max-width: 768px) {
             .scroll-btn {
                 display: none;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .back-btn-container {
+                position: static;
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Ambience Mall Brands</h1>
+        <div class="header-container">
+            <div class="back-btn-container">
+                <button class="back-btn" onclick="goBack()">← Back</button>
+            </div>
+            <h1 class="text-center mb-4">Ambience Mall Brands</h1>
+        </div>
 
         <?php foreach ($brands as $category => $items): ?>
             <h2 class="category-title"><?= $category ?></h2>
@@ -158,6 +195,10 @@ unset($items);
         function scrollRight(containerId) {
             const container = document.getElementById(containerId);
             container.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+        
+        function goBack() {
+            window.history.back();
         }
     </script>
 </body>

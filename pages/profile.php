@@ -68,17 +68,17 @@ $_SESSION['theme'] = $theme;
             }
             
             // Update URL without reload
-            const newUrl = window.location.href.split('?')[0] + '?theme=${newTheme}';
+            const newUrl = window.location.href.split('?')[0] + '?theme=' + newTheme;
             window.history.pushState({}, '', newUrl);
             
             // Store in session
             fetch(newUrl, { method: 'HEAD' });
         }
         
-        // Toggle dropdown
+        // Toggle dropdown - FIXED THIS FUNCTION
         function toggleDropdown(id) {
-            const dropdown = document.getElementById('dropdown-content-${id}');
-            const icon = document.getElementById('dropdown-icon-${id}');
+            const dropdown = document.getElementById('dropdown-content-' + id);
+            const icon = document.getElementById('dropdown-icon-' + id);
             dropdown.classList.toggle('show');
             icon.classList.toggle('rotate-180');
         }
@@ -164,7 +164,7 @@ $_SESSION['theme'] = $theme;
                 
                 <!-- Logout Button -->
                 <li>
-                    <a href="pages/logout.php" class="w-full block p-3 text-center bg-yellow-500 dark:bg-amber-600 rounded-lg text-white font-semibold">
+                    <a href="/PROJECTT/Anj/ShopQwik-main/ShopQwik/logout.php" class="w-full block p-3 text-center bg-yellow-500 dark:bg-amber-600 rounded-lg text-white font-semibold">
                         <i class="fas fa-sign-out-alt mr-2"></i> Logout
                     </a>
                 </li>
@@ -175,7 +175,7 @@ $_SESSION['theme'] = $theme;
         <div class="w-full md:w-2/3 p-8">
             <h2 class="text-2xl font-bold text-[#8B4513] dark:text-amber-200">Logout</h2>
             <p class="text-gray-600 dark:text-gray-300 mt-2">Hello, <span class="font-semibold text-[#8B4513] dark:text-amber-300"><?php echo htmlspecialchars($username); ?></span>! Are you sure you want to log out?</p>
-            <a href="pages/logout.php" class="mt-4 inline-block px-6 py-2 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 rounded-full transition">
+            <a href="/PROJECTT/Anj/ShopQwik-main/ShopQwik/logout.php" class="mt-4 inline-block px-6 py-2 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 rounded-full transition">
                 Yes, Logout
             </a>
         </div>

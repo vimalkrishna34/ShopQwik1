@@ -38,8 +38,9 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>UB City Mall Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             background-color: #f4f4f9;
@@ -47,10 +48,10 @@ unset($items); // Unset reference to prevent accidental overwriting
             margin: 50px;
         }
         .card-img-top {
-            height: 250px; /* Increased image size */
+            height: 250px;
             width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
+            object-fit: contain;
+            background-color: #f8f9fa;
         }
         .card {
             margin-bottom: 1rem;
@@ -114,11 +115,36 @@ unset($items); // Unset reference to prevent accidental overwriting
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .back-btn-container {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+        .back-btn i {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Top Brands in Ubcity Mall Bangaluru</h1>
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <h1>Top Brands in UB City Mall Bangalore</h1>
         <?php foreach ($brands as $category => $items): ?>
             <div class="category-section">
                 <h2><?php echo $category; ?></h2>

@@ -30,7 +30,7 @@ $brands = [
 foreach ($brands as &$items) {
     shuffle($items);
 }
-unset($items); // Unset reference to prevent accidental overwriting
+unset($items);
 ?>
 
 <!DOCTYPE html>
@@ -38,19 +38,21 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>Mantri Mall Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             background-color: #f4f4f9;
             font-family: 'Arial', sans-serif;
-            margin: 50px;
+            margin: 0;
+            padding: 70px 20px 20px; /* Added padding for fixed header and back button */
         }
         .card-img-top {
-            height: 250px; /* Increased image size */
+            height: 250px;
             width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
+            object-fit: contain;
+            background-color: #f8f9fa;
         }
         .card {
             margin-bottom: 1rem;
@@ -114,11 +116,63 @@ unset($items); // Unset reference to prevent accidental overwriting
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        /* Back Button Styles */
+        .back-btn-container {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            z-index: 1000;
+        }
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+            transform: translateX(-3px);
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 60px 15px 15px;
+            }
+            .back-btn-container {
+                left: 10px;
+                top: 10px;
+            }
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Back Button -->
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+    </div>
+
     <div class="container">
-        <h1>Top Brands in Manthri Mall Bangaluru</h1>
+        <h1>Top Brands in Mantri Mall Bangalore</h1>
         <?php foreach ($brands as $category => $items): ?>
             <div class="category-section">
                 <h2><?php echo $category; ?></h2>
@@ -139,5 +193,7 @@ unset($items); // Unset reference to prevent accidental overwriting
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

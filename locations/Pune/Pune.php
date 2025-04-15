@@ -9,43 +9,163 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pune Malls - ShopQwik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #8B5E3C;
+            --secondary-color: #5A3E36;
+            --light-bg: #F5F5DC;
+            --accent-color: #A28C75;
+        }
         body {
-            background-color: #F5F5DC; /* Beige background */
-            color: #5A3E36; /* Brown text */
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .header-bg {
-            background-color: #F5F5DC; 
-            color: #5A3E36; 
-            border-bottom: 4px solid #A28C75;
+            background-color: var(--light-bg); 
+            color: var(--secondary-color); 
+            border-bottom: 4px solid var(--accent-color);
         }
         .mall-card {
-            background-color: #F5F5DC;
-            color: #5A3E36;
-            border: 3px solid #A28C75;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            border: 1px solid rgba(138, 94, 60, 0.2);
         }
         .mall-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
-        .mall-card img {
-            height: 250px;
+        .mall-card-img {
+            height: 240px;
             object-fit: cover;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            width: 100%;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .card-body {
+            padding: 1.5rem;
         }
         .mall-title {
-            color: #8B5E3C;
-            font-weight: bold;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-bottom: 10px;
         }
-        .btn-warning {
-            background-color: #8B5E3C;
+        .mall-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        .mall-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .btn-explore {
+            background-color: var(--primary-color);
+            color: white;
             border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn-warning:hover {
-            background-color: #5A3E36;
+        .btn-explore:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .mall-features {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature-badge {
+            background: rgba(138, 94, 60, 0.1);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .carousel-control-prev, .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            background-color: var(--secondary-color);
+        }
+        .carousel-control-prev {
+            left: 10px;
+        }
+        .carousel-control-next {
+            right: 10px;
+        }
+        .mall-selector {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .mall-selector select {
+            background-color: white;
+            color: var(--secondary-color);
+            border: 2px solid var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+        }
+        .browse-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .browse-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .carousel-control-prev {
+                left: 5px;
+            }
+            .carousel-control-next {
+                right: 5px;
+            }
+            .mall-card {
+                max-width: 350px;
+            }
         }
     </style>
 </head>
@@ -53,39 +173,108 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 
 <?php include '../../includes/header.php'; ?>
 
-<div class="text-center py-5 header-bg shadow mb-4">
-    <h1 class="display-5 fw-bold" style="margin-top: 50px;">Top Malls in Pune</h1>
+<div class="text-center ">
+    <h1 class="display-5 fw-bold" style="margin-top: 50px;"></h1>
 </div>
 
 <div class="container py-5">
-    <div class="row g-4">
-        <?php
-        $malls = [
-            ["name" => "Phoenix Marketcity", "image" => "https://www.phoenixmarketcity.com/pune/wp-content/uploads/sites/5/2022/03/Pune-Banner-1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/phoenix.php', 'description' => 'Pune\'s largest mall with 1.2 million sq.ft of retail space.'],
-            ["name" => "Amanora Mall", "image" => "https://www.amanoratown.com/wp-content/uploads/2021/12/mall-gallery-1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/amanora.php', 'description' => 'Premium shopping destination in Hadapsar.'],
-            ["name" => "Kumar Pacific Mall", "image" => "https://content.jdmagicbox.com/comp/pune/h3/020pxx20.xx20.170824140212.i5h3/catalogue/kumar-pacific-mall-shivajinagar-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/kumar.php', 'description' => 'Luxury mall in the heart of Pune at Shivajinagar.'],
-            ["name" => "Westend Mall", "image" => "https://content.jdmagicbox.com/comp/pune/g5/020pxx20.xx20.170824140212.i5g5/catalogue/westend-mall-avinash-society-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/westend.php', 'description' => 'Popular shopping and entertainment hub in Aundh.'],
-            ["name" => "SGS Mall", "image" => "https://content.jdmagicbox.com/comp/pune/i1/020pxx20.xx20.170824140212.i5i1/catalogue/sgs-mall-mall-mg-road-pune-shopping-malls-1zr6zqk.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/sgs.php', 'description' => 'Historic mall on MG Road with premium brands.'],
-            ["name" => "Seasons Mall", "image" => "https://www.seasonsmall.com/wp-content/uploads/2022/03/seasons-mall-pune.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/seasons.php', 'description' => 'Modern lifestyle mall in Magarpatta City.'],
-        ];
+    <!-- Mall Selector Dropdown -->
+    <div class="mall-selector">
+        <select id="mallSelect" class="form-select" onchange="goToSlide(this.value)">
+            <option value="" selected disabled>Select a Mall</option>
+            <?php
+            $malls = [
+                ["name" => "The Pavillion Mall", "image" => "https://www.iccpune.org/assets/images/developments/9TxmUf6Le2pvkDGaytKqQ5jwMWSlhg.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/pavillion.php', 'description' => 'A vibrant destination for fashion, cinema, food, and fun.', 'features' => ['Fashion', 'Cinema', 'Dining']],
+                ["name" => "Phoenix Marketcity Pune", "image" => "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/0a/00/0d/shops.jpg?w=1200&h=1200&s=1", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/phoenix.php', 'description' => 'An exclusive shopping experience with top international brands.', 'features' => ['Luxury', 'International Brands']],
+                ["name" => "Nexus Westend Mall", "image" => "https://content3.jdmagicbox.com/comp/pune/l1/020pxx20.xx20.170628183100.t7l1/catalogue/westend-mall-aundh-pune-jw8f1.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/nexus.php', 'description' => 'A premium mall known for luxury shopping and entertainment.', 'features' => ['Luxury', 'Entertainment', 'Dining']],
+                ["name" => "Royale Heritage Mall", "image" => "https://pune.mallsmarket.com/sites/default/files/photos/malls/RoyaleHeritageMall-Mohamadwadi-2.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/royale.php', 'description' => 'A shopping hub featuring fashion, food courts, and events.', 'features' => ['Fashion', 'Food Court', 'Events']],
+                ["name" => "Amanora Mall", "image" => "https://www.bkinteriorsindia.com/wp-content/uploads/2018/08/amanora_mall15.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/amanora.php', 'description' => 'Delhi\'s iconic mall with diverse retail and entertainment spots.', 'features' => ['Retail', 'Entertainment']],
+                ["name" => "Phoenix Mall of the Millennium", "image" => "https://mallofthemillennium.s3.ap-south-1.amazonaws.com/BlogsImages/16072024172438915_blogHomeimg.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Pune/Pheon.php', 'description' => 'A luxurious space for fine dining, fashion, and lifestyle.', 'features' => ['Luxury', 'Fine Dining', 'Fashion']],
+            ];
+            
+            foreach ($malls as $index => $mall) {
+                echo '<option value="'.$index.'">'.$mall['name'].'</option>';
+            }
+            ?>
+        </select>
+    </div>
 
-        foreach ($malls as $mall) { ?>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card mall-card shadow-sm">
-                    <img src="<?= $mall['image'] ?>" class="card-img-top" alt="<?= $mall['name'] ?>">
-                    <div class="card-body text-center">
-                        <h3 class="mall-title"> <?= $mall['name'] ?> </h3>
-                        <p> <?= $mall['description'] ?> </p>
-                        <a href="<?= $mall['link'] ?>" class="btn btn-warning text-white">Explore More</a>
+    <div id="mallCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <?php
+            foreach ($malls as $index => $mall) {
+                $activeClass = $index === 0 ? 'active' : '';
+                echo '
+                <div class="carousel-item '.$activeClass.'">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card mall-card">
+                                <img src="'.$mall['image'].'" class="mall-card-img" alt="'.$mall['name'].'">
+                                <div class="card-body text-center">
+                                    <h3 class="mall-title">'.$mall['name'].'</h3>
+                                    
+                                    <div class="mall-features">';
+                                    foreach ($mall['features'] as $feature) {
+                                        echo '<span class="feature-badge">
+                                            <i class="fas fa-check"></i> '.$feature.'
+                                        </span>';
+                                    }
+                                    echo '</div>
+                                    
+                                    <p class="mall-description">'.$mall['description'].'</p>
+                                    
+                                    <a href="'.$mall['link'].'" class="btn btn-explore">
+                                        Explore More <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        <?php } ?>
+                </div>';
+            }
+            ?>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#mallCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mallCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
 
 <?php include '../../includes/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+    // Initialize carousel
+    const mallCarousel = new bootstrap.Carousel(document.getElementById('mallCarousel'), {
+        interval: 3000,
+        wrap: true
+    });
+    
+    // Function to go to specific slide
+    function goToSlide(index) {
+        mallCarousel.to(index);
+    }
+    
+    // Update dropdown when carousel slides
+    document.getElementById('mallCarousel').addEventListener('slid.bs.carousel', function (event) {
+        document.getElementById('mallSelect').value = event.to;
+    });
+    
+    // Pause carousel when hovering over it
+    document.getElementById('mallCarousel').addEventListener('mouseenter', function() {
+        mallCarousel.pause();
+    });
+    
+    document.getElementById('mallCarousel').addEventListener('mouseleave', function() {
+        mallCarousel.cycle();
+    });
+</script>
 </body>
 </html>

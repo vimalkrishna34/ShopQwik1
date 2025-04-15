@@ -40,6 +40,7 @@ unset($items); // Unset reference to prevent accidental overwriting
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inorbit Mall Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             background-color: #f4f4f9;
@@ -114,9 +115,54 @@ unset($items); // Unset reference to prevent accidental overwriting
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        /* Back Button Styles */
+        .back-btn-container {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            z-index: 1000;
+        }
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+            transform: translateX(-3px);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            body {
+                margin: 20px;
+            }
+            .back-btn-container {
+                left: 10px;
+                top: 10px;
+            }
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Back Button -->
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+    </div>
+
     <div class="container">
         <h1>Top Brands in Forum Mall Bangaluru</h1>
         <?php foreach ($brands as $category => $items): ?>
@@ -139,5 +185,7 @@ unset($items); // Unset reference to prevent accidental overwriting
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

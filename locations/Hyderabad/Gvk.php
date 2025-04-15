@@ -38,30 +38,34 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>GVK Mall Hyderabad - Brands</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             background-color: #f4f4f9;
             font-family: 'Arial', sans-serif;
-            margin: 50px;
+            margin: 0;
+            padding: 20px;
         }
         .card-img-top {
-            height: 250px; /* Increased image size */
+            height: 200px;
             width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
+            object-fit: contain;
+            background-color: #f8f9fa;
+            padding: 15px;
         }
         .card {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
         }
         .card-body {
             padding: 1.5rem;
@@ -70,67 +74,119 @@ unset($items); // Unset reference to prevent accidental overwriting
         }
         .card-text {
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             margin: 0.5rem 0;
-            color: #333;
+            color: #2c3e50;
         }
         .price {
-            color: #007bff;
-            font-size: 1.25rem;
+            color: #e74c3c;
+            font-size: 1.2rem;
             font-weight: bold;
         }
         .btn-add {
-            background-color: #28a745;
+            background-color: #3498db;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
             cursor: pointer;
             width: 100%;
             margin-top: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
         }
         .btn-add:hover {
-            background-color: #218838;
+            background-color: #2980b9;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
         h1 {
             font-size: 2.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
-            color: #343a40;
+            color: #2c3e50;
+            font-weight: 700;
+            position: relative;
+            padding-top: 20px;
         }
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: #495057;
+            color: #34495e;
+            font-weight: 600;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
         }
         .category-section {
             margin-bottom: 3rem;
-            padding: 1rem;
+            padding: 1.5rem;
             background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .back-btn-container {
+            margin-bottom: 1.5rem;
+        }
+        .back-btn {
+            background-color: #7f8c8d;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .back-btn:hover {
+            background-color: #95a5a6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .back-btn i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .card-img-top {
+                height: 180px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-chevron-left"></i> Back to Malls
+            </button>
+        </div>
+        
         <h1>Top Brands in GVK Mall Hyderabad</h1>
+        
         <?php foreach ($brands as $category => $items): ?>
             <div class="category-section">
                 <h2><?php echo $category; ?></h2>
                 <div class="row">
                     <?php foreach ($items as $brand): ?>
-                        <div class="col-md-3 mb-4">
-                            <div class="card">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="card h-100">
                                 <img src="<?php echo $brand['image']; ?>" class="card-img-top" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column">
                                     <p class="card-text"><?php echo $brand['name']; ?></p>
-                                    <p class="price"><?php echo $brand['price']; ?></p>
-                                    <button class="btn-add">Explore more</button>
+                                    <p class="price mt-auto"><?php echo $brand['price']; ?></p>
+                                    <button class="btn-add mt-3">Explore Store</button>
                                 </div>
                             </div>
                         </div>
@@ -139,5 +195,7 @@ unset($items); // Unset reference to prevent accidental overwriting
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

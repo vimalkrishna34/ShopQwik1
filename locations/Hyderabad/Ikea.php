@@ -38,99 +38,205 @@ unset($items); // Unset reference to prevent accidental overwriting
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inorbit Mall Brands</title>
+    <title>IKEA Mall Hyderabad - ShopQwik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0058AB; /* IKEA blue */
+            --secondary-color: #FFDA1A; /* IKEA yellow */
+            --light-bg: #F5F5F5;
+            --accent-color: #333333;
+        }
         body {
-            background-color: #f4f4f9;
-            font-family: 'Arial', sans-serif;
-            margin: 50px;
+            background-color: var(--light-bg);
+            color: var(--accent-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
         }
-        .card-img-top {
-            height: 250px; /* Increased image size */
-            width: 100%;
-            object-fit: contain; /* Ensure images are not cropped */
-            background-color: #f8f9fa; /* Fallback background color */
-        }
-        .card {
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .card-body {
-            padding: 1.5rem;
-            text-align: center;
-            background-color: #ffffff;
-        }
-        .card-text {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-            color: #333;
-        }
-        .price {
-            color: #007bff;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        .btn-add {
-            background-color: #28a745;
+        .back-btn {
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
-        .btn-add:hover {
-            background-color: #218838;
+        .back-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .mall-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .mall-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            transform: translateX(-50%);
+        }
+        .category-section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 88, 171, 0.1);
+        }
+        .category-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-title i {
+            color: var(--secondary-color);
+        }
+        .brand-card {
+            background: white;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0, 88, 171, 0.1);
+        }
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 88, 171, 0.1);
+        }
+        .brand-img {
+            height: 200px;
+            object-fit: contain;
+            width: 100%;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+        .brand-name {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+        .brand-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-explore {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-explore:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #343a40;
+        .ikea-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        h2 {
+        .ikea-banner i {
             font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #495057;
+            color: var(--secondary-color);
         }
-        .category-section {
-            margin-bottom: 3rem;
-            padding: 1rem;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        @media (max-width: 768px) {
+            .mall-title {
+                font-size: 1.8rem;
+            }
+            .category-title {
+                font-size: 1.5rem;
+            }
+            .brand-img {
+                height: 180px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Top Brands in IKEA Mall Hyderabad</h1>
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-chevron-left"></i> Back to Malls
+        </button>
+        
+        <div class="ikea-banner">
+            <i class="fas fa-store-alt"></i>
+            <div>
+                <h2 style="margin: 0; color: white;">IKEA Hyderabad</h2>
+                <p style="margin: 5px 0 0; opacity: 0.9;">Swedish home furnishings and more</p>
+            </div>
+        </div>
+        
+        <h1 class="mall-title">Featured Brands at IKEA</h1>
+        
         <?php foreach ($brands as $category => $items): ?>
             <div class="category-section">
-                <h2><?php echo $category; ?></h2>
+                <h2 class="category-title">
+                    <?php 
+                    if ($category == "Apparel (Fashion)") {
+                        echo '<i class="fas fa-tshirt"></i>';
+                    } elseif ($category == "Beauty & Personal Care") {
+                        echo '<i class="fas fa-spa"></i>';
+                    } else {
+                        echo '<i class="fas fa-plug"></i>';
+                    }
+                    echo $category; 
+                    ?>
+                </h2>
                 <div class="row">
                     <?php foreach ($items as $brand): ?>
-                        <div class="col-md-3 mb-4">
-                            <div class="card">
-                                <img src="<?php echo $brand['image']; ?>" class="card-img-top" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
-                                <div class="card-body">
-                                    <p class="card-text"><?php echo $brand['name']; ?></p>
-                                    <p class="price"><?php echo $brand['price']; ?></p>
-                                    <button class="btn-add">Explore more</button>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="card brand-card h-100">
+                                <img src="<?php echo $brand['image']; ?>" class="card-img-top brand-img" alt="<?php echo $brand['name']; ?>" onerror="this.src='images/placeholder.jpg';">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="brand-name"><?php echo $brand['name']; ?></h5>
+                                    <p class="brand-price"><?php echo $brand['price']; ?></p>
+                                    <button class="btn btn-explore mt-auto">
+                                        Explore <i class="fas fa-arrow-right"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -139,5 +245,16 @@ unset($items); // Unset reference to prevent accidental overwriting
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll to top when page loads
+        window.addEventListener('load', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>

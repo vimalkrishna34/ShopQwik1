@@ -156,6 +156,29 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             color: white;
             transform: translateY(-2px);
         }
+        /* Back Button Styles */
+        .back-btn-container {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            z-index: 1000;
+        }
+        .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(-3px);
+        }
         @media (max-width: 768px) {
             .carousel-control-prev {
                 left: 5px;
@@ -166,6 +189,14 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             .mall-card {
                 max-width: 350px;
             }
+            .back-btn-container {
+                left: 10px;
+                top: 10px;
+            }
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -173,7 +204,14 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 
 <?php include '../../includes/header.php'; ?>
 
-<div class="text-center ">
+<!-- Back Button -->
+<div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+</div>
+
+<div class="text-center">
     <h1 class="display-5 fw-bold" style="margin-top: 50px;"></h1>
 </div>
 
@@ -185,11 +223,11 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
             <?php
             $malls = [
                 ["name" => "Select Citywalk", "image" => "https://i.pinimg.com/736x/16/b6/8e/16b68e6e4967beeac1f622c374c0588e.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A vibrant destination for fashion, cinema, food, and fun.', 'features' => ['Fashion', 'Cinema', 'Dining']],
-                ["name" => "DLF Promenade", "image" => "https://i.pinimg.com/736x/bb/64/e1/bb64e15614bdb93a4ee925fddfbe078d.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/promenade.php', 'description' => 'An exclusive shopping experience with top international brands.', 'features' => ['Luxury', 'International Brands']],
-                ["name" => "Ambience Mall", "image" => "https://www.punnaka.com/images/mall_images/5de6a17fe9b4a-ambiencemallvasantkunj.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/ambience.php', 'description' => 'A premium mall known for luxury shopping and entertainment.', 'features' => ['Luxury', 'Entertainment', 'Dining']],
-                ["name" => "Pacific Mall", "image" => "https://cdn.sanity.io/images/ei17ewl3/production/1638880d0e0c1f438fe445f7547aea22b981dbdb-1920x950.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/pacific.php', 'description' => 'A shopping hub featuring fashion, food courts, and events.', 'features' => ['Fashion', 'Food Court', 'Events']],
-                ["name" => "Ansal Plaza", "image" => "https://assets.isu.pub/document-structure/230106061351-ef3661c653bd6fe3383cb880a6a13e30/v1/d7bbcbd93b10a911149a9e13b2159a59.jpeg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/ansal.php', 'description' => 'Delhi\'s iconic mall with diverse retail and entertainment spots.', 'features' => ['Retail', 'Entertainment']],
-                ["name" => "The Chanakya", "image" => "https://sundayguardianlive.com/wp-content/uploads/2023/11/The-Chanakya-1-Large.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/chanakya.php', 'description' => 'A luxurious space for fine dining, fashion, and lifestyle.', 'features' => ['Luxury', 'Fine Dining', 'Fashion']],
+                ["name" => "DLF Promenade", "image" => "https://i.pinimg.com/736x/bb/64/e1/bb64e15614bdb93a4ee925fddfbe078d.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'An exclusive shopping experience with top international brands.', 'features' => ['Luxury', 'International Brands']],
+                ["name" => "Ambience Mall", "image" => "https://www.punnaka.com/images/mall_images/5de6a17fe9b4a-ambiencemallvasantkunj.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A premium mall known for luxury shopping and entertainment.', 'features' => ['Luxury', 'Entertainment', 'Dining']],
+                ["name" => "Pacific Mall", "image" => "https://cdn.sanity.io/images/ei17ewl3/production/1638880d0e0c1f438fe445f7547aea22b981dbdb-1920x950.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A shopping hub featuring fashion, food courts, and events.', 'features' => ['Fashion', 'Food Court', 'Events']],
+                ["name" => "Ansal Plaza", "image" => "https://assets.isu.pub/document-structure/230106061351-ef3661c653bd6fe3383cb880a6a13e30/v1/d7bbcbd93b10a911149a9e13b2159a59.jpeg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'Delhi\'s iconic mall with diverse retail and entertainment spots.', 'features' => ['Retail', 'Entertainment']],
+                ["name" => "The Chanakya", "image" => "https://sundayguardianlive.com/wp-content/uploads/2023/11/The-Chanakya-1-Large.jpg", 'link' => '/PROJECTT/anj/ShopQwik-main/ShopQwik/locations/Delhi/citywalk.php', 'description' => 'A luxurious space for fine dining, fashion, and lifestyle.', 'features' => ['Luxury', 'Fine Dining', 'Fashion']],
             ];
             
             foreach ($malls as $index => $mall) {
