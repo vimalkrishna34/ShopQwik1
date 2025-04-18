@@ -158,10 +158,8 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
         }
         /* Back Button Styles */
         .back-btn-container {
-            position: absolute;
             left: 20px;
-            top: 20px;
-            z-index: 1000;
+            margin-top: 100px;
         }
         .back-btn {
             background-color: var(--primary-color);
@@ -204,12 +202,6 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light';
 
 <?php include '../../includes/header.php'; ?>
 
-<!-- Back Button -->
-<div class="back-btn-container">
-    <button class="back-btn" onclick="window.history.back()">
-        <i class="fas fa-arrow-left"></i> Back
-    </button>
-</div>
 
 <div class="text-center">
     <h1 class="display-5 fw-bold" style="margin-top: 50px;"></h1>

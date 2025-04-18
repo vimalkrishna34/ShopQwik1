@@ -1,17 +1,13 @@
 <?php
-// MUST be first - no whitespace before!
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Initialize cart if not exists
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Process add to cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    // Validate all required fields
     if (isset($_POST['product_id'], $_POST['name'], $_POST['price'], $_POST['image'], $_POST['brand'])) {
         $product = [
             'id' => (int)$_POST['product_id'],
@@ -22,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             'quantity' => 1
         ];
         
-        // Check if product already in cart
         $found = false;
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['id'] == $product['id'] && $item['brand'] == $product['brand']) {
@@ -174,7 +169,7 @@ require_once __DIR__ . '/../includes/header.php';
                                 <form method="POST">
                                     <button type="submit" name="clear_cart" class="btn btn-danger w-100">Clear Cart</button>
                                 </form>
-                                <a href="../products/" class="btn btn-outline-secondary">Continue Shopping</a>
+                                <a href="../pages/location.php" class="btn btn-outline-secondary">Continue Shopping</a>
                             </div>
                         </div>
                     </div>
@@ -184,7 +179,7 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="empty-cart">
                 <h4>Your cart is empty</h4>
                 <p class="text-muted">Start shopping to add items to your cart</p>
-                <a href="../products/" class="btn btn-primary mt-3">Continue Shopping</a>
+                <a href="../pages/location.php" class="btn btn-primary mt-3">Continue Shopping</a>
             </div>
         <?php endif; ?>
     </div>

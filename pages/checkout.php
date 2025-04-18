@@ -1,24 +1,40 @@
-<?php include '../includes/header.php'; ?>
-<?php include '../includes/arrays.php'; ?>
+<?php 
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Redirect to cart if cart is empty
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    header("Location: cart.php");
+    exit();
+}
+
+// Calculate totals
+$subtotal = array_reduce($_SESSION['cart'], function($sum, $item) {
+    return $sum + ($item['price'] * $item['quantity']);
+}, 0);
+
+$total = $subtotal; 
+if (isset($_POST['place_order'])) {
+    unset($_SESSION['cart']);
+    
+    echo "<script>
+            alert('✅ Your order has been placed successfully! Collect it from our store in Mall');
+            window.location.href = '../index.php';
+          </script>";
+    exit();
+}
+
+include '../includes/header.php'; 
+?>
 
 <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg" style="margin-top: 80px;">
     <h2 class="text-3xl font-semibold mb-6">Checkout</h2>
     
-    <?php
-    if (isset($_POST['place_order'])) {
-        echo "<script>
-                alert('✅ Your order has been placed successfully!');
-                window.location.href = '../index.php';
-              </script>";
-        exit();
-    }
-    ?>
-    
     <form method="post">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Left: Contact, Delivery, Shipping, Payment -->
             <div class="space-y-6">
-                <!-- Contact Information -->
                 <div class="p-4 border rounded-lg">
                     <h3 class="text-xl font-semibold mb-3">Contact Information</h3>
                     <input type="text" placeholder="First Name" class="w-full border p-2 rounded-md mb-2" required>
@@ -27,20 +43,14 @@
                     <input type="text" placeholder="Phone Number" class="w-full border p-2 rounded-md" required>
                 </div>
 
-                <!-- Delivery Method -->
                 <div class="p-4 border rounded-lg">
                     <h3 class="text-xl font-semibold mb-3">Delivery Method</h3>
                     <label class="flex items-center space-x-2">
                         <input type="radio" name="delivery" value="standard" checked>
-                        <span>Standard delivery (2-5 days) - FREE</span>
-                    </label>
-                    <label class="flex items-center space-x-2 mt-2">
-                        <input type="radio" name="delivery" value="express">
-                        <span>Express delivery (1-2 days) - ₹199</span>
+                        <span>Store number 1011 in respective mall</span>
                     </label>
                 </div>
 
-                <!-- Shipping Information -->
                 <div class="p-4 border rounded-lg">
                     <h3 class="text-xl font-semibold mb-3">Shipping Information</h3>
                     <input type="text" placeholder="Street Address" class="w-full border p-2 rounded-md mb-2" required>
@@ -62,15 +72,22 @@
             <div class="p-4 border rounded-lg">
                 <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
                 <div class="space-y-4">
-                    <div class="flex justify-between">
-                        <span>Jacket</span>
-                        <span>₹1500</span>
-                    </div>
+                    <?php foreach ($_SESSION['cart'] as $item): ?>
+                        <div class="flex justify-between">
+                            <span>
+                                <?= htmlspecialchars($item['name']) ?> 
+                                <?php if ($item['quantity'] > 1): ?>
+                                    <span class="text-sm text-gray-500">×<?= $item['quantity'] ?></span>
+                                <?php endif; ?>
+                            </span>
+                            <span>₹<?= number_format($item['price'] * $item['quantity'], 2) ?></span>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <hr class="my-4">
                 <div class="flex justify-between font-semibold">
                     <span>Subtotal</span>
-                    <span>₹3098</span>
+                    <span>₹<?= number_format($subtotal, 2) ?></span>
                 </div>
                 <div class="flex justify-between">
                     <span>Delivery</span>
@@ -79,7 +96,7 @@
                 <hr class="my-4">
                 <div class="flex justify-between text-lg font-bold">
                     <span>Total</span>
-                    <span>₹3098</span>
+                    <span>₹<?= number_format($total, 2) ?></span>
                 </div>
                 <button type="submit" name="place_order" class="w-full bg-yellow-500 text-white py-2 rounded-lg mt-4 hover:bg-yellow-600 transition">
                     Place Now
