@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Auto-login after successful signup
             $_SESSION["username"] = $username1;
             $_SESSION["email"] = $email;
-            header("Refresh: 2; url=profile.php"); // Redirect after 2 seconds
+            header("Refresh: 2; url=login.php"); // Redirect after 2 seconds
         }
         else{
             $error = "Error creating account: " . mysqli_error($conn);

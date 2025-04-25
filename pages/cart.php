@@ -111,7 +111,7 @@ require_once __DIR__ . '/../includes/header.php';
 </head>
 <body>
     <div class="container cart-container">
-        <h1 class="mb-4">Your Shopping Cart</h1>
+        <h1 class="mb-4" style="margin-top: 100px;">Your Shopping Cart</h1>
         
         <?php if (!empty($_SESSION['cart'])): ?>
             <div class="row">
@@ -131,10 +131,11 @@ require_once __DIR__ . '/../includes/header.php';
                             <div class="col-2">
                                 <form method="POST" class="d-flex align-items-center">
                                     <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" name="update_quantity" value="decrease" class="quantity-btn btn btn-sm btn-outline-secondary">-</button>
+                                    <input type="hidden" name="action" id="action_<?= $index ?>">
+                                    <button type="button" onclick="updateQuantity(<?= $index ?>, 'decrease')" class="quantity-btn btn btn-sm btn-outline-secondary">-</button>
                                     <span class="mx-2"><?= $item['quantity'] ?></span>
-                                    <button type="submit" name="update_quantity" value="increase" class="quantity-btn btn btn-sm btn-outline-secondary">+</button>
-                                    <input type="hidden" name="action" value="">
+                                    <button type="button" onclick="updateQuantity(<?= $index ?>, 'increase')" class="quantity-btn btn btn-sm btn-outline-secondary">+</button>
+                                    <button type="submit" name="update_quantity" style="display:none;"></button>
                                 </form>
                             </div>
                             <div class="col-2 d-flex align-items-center">
@@ -176,14 +177,24 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
             </div>
         <?php else: ?>
-            <div class="empty-cart">
+            <div class="empty-cart" style="margin-top: 30px;">
                 <h4>Your cart is empty</h4>
                 <p class="text-muted">Start shopping to add items to your cart</p>
                 <a href="../pages/location.php" class="btn btn-primary mt-3">Continue Shopping</a>
             </div>
         <?php endif; ?>
     </div>
+
+    <script>
+        function updateQuantity(index, action) {
+            document.getElementById('action_' + index).value = action;
+            // Find the closest form and submit it
+            const form = document.querySelector(`form input[name="index"][value="${index}"]`).closest('form');
+            form.querySelector('button[type="submit"]').click();
+        }
+    </script>
 </body>
 </html>
-
+<div style="margin-top: 100px;">
 <?php include '../includes/footer.php'; ?>
+</div>

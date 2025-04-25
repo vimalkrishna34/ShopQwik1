@@ -6,6 +6,27 @@ if (!isset($_SESSION['username'])) {
 }
 $username = $_SESSION['username'];
 
+// Database connection
+$servername = "localhost";
+$username_db = "root";
+$password_db = "";
+$database = "shopqwik";
+
+$conn = mysqli_connect($servername, $username_db, $password_db, $database);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Get user's orders
+$orders = [];
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    $result = mysqli_query($conn, "SELECT * FROM orders WHERE user_id = $userId ORDER BY order_date DESC");
+    while ($row = mysqli_fetch_assoc($result)) {
+        $orders[] = $row;
+    }
+}
+
 // Check for theme preference
 $theme = isset($_GET['theme']) ? $_GET['theme'] : (isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light');
 $_SESSION['theme'] = $theme;
@@ -43,6 +64,13 @@ $_SESSION['theme'] = $theme;
       }
       .rotate-180 {
         transform: rotate(180deg);
+      }
+      .order-item {
+          border-bottom: 1px solid #e2e8f0;
+          padding: 1rem 0;
+      }
+      .order-item:last-child {
+          border-bottom: none;
       }
     </style>
     <script>
@@ -114,7 +142,7 @@ $_SESSION['theme'] = $theme;
                     </button>
                     <div id="dropdown-content-personal" class="dropdown-content bg-white dark:bg-gray-600 rounded-lg mt-1 ml-4">
                         <ul class="p-2 space-y-1">
-                            Name : <?php echo htmlspecialchars($username); ?>
+                            Name : <?php echo htmlspecialchars($_SESSION['username']); ?>
                         </ul>
                     </div>
                 </li>
@@ -127,7 +155,7 @@ $_SESSION['theme'] = $theme;
                     </button>
                     <div id="dropdown-content-orders" class="dropdown-content bg-white dark:bg-gray-600 rounded-lg mt-1 ml-4">
                         <ul class="p-2 space-y-1">
-                            <li class="p-2 hover:bg-gray-100 dark:hover:bg-gray-500 rounded"><a href="#">Order History</a></li>
+                            <li class="p-2 hover:bg-gray-100 dark:hover:bg-gray-500 rounded"><a href="#orders">Order History</a></li>
                             <li class="p-2 hover:bg-gray-100 dark:hover:bg-gray-500 rounded"><a href="#">Returns</a></li>
                             <li class="p-2 hover:bg-gray-100 dark:hover:bg-gray-500 rounded"><a href="#">Track Order</a></li>
                         </ul>
@@ -173,11 +201,54 @@ $_SESSION['theme'] = $theme;
 
         <!-- Profile Content -->
         <div class="w-full md:w-2/3 p-8">
-            <h2 class="text-2xl font-bold text-[#8B4513] dark:text-amber-200">Logout</h2>
-            <p class="text-gray-600 dark:text-gray-300 mt-2">Hello, <span class="font-semibold text-[#8B4513] dark:text-amber-300"><?php echo htmlspecialchars($username); ?></span>! Are you sure you want to log out?</p>
-            <a href="/PROJECTT/Anj/ShopQwik-main/ShopQwik/logout.php" class="mt-4 inline-block px-6 py-2 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 rounded-full transition">
-                Yes, Logout
-            </a>
+            <h2 class="text-2xl font-bold text-[#8B4513] dark:text-amber-200 mb-6">Order History</h2>
+            
+            <?php if (!empty($orders)): ?>
+                <div class="space-y-4" id="orders">
+                    <?php foreach ($orders as $order): 
+                        $orderData = json_decode($order['order_data'], true);
+                        $orderDate = date('F j, Y, g:i a', strtotime($order['order_date']));
+                    ?>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-semibold text-[#8B4513] dark:text-amber-200">Order #<?= $order['id'] ?></h3>
+                                <span class="text-sm text-gray-500 dark:text-gray-400"><?= $orderDate ?></span>
+                            </div>
+                            <div class="mb-2">
+                                <span class="font-medium">Total: </span>
+                                <span class="text-[#8B4513] dark:text-amber-300">₹<?= number_format($order['total_amount'], 2) ?></span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <h4 class="font-medium mb-1">Items:</h4>
+                                <ul class="space-y-2">
+                                    <?php foreach ($orderData as $item): ?>
+                                        <li class="order-item">
+                                            <div class="flex justify-between">
+                                                <span><?= htmlspecialchars($item['name']) ?></span>
+                                                <span>₹<?= number_format($item['price'] * $item['quantity'], 2) ?></span>
+                                            </div>
+                                            <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                                                <span>Qty: <?= $item['quantity'] ?></span>
+                                                <span>₹<?= number_format($item['price'], 2) ?> each</span>
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow text-center">
+                    <i class="fas fa-shopping-bag text-4xl text-gray-400 mb-3"></i>
+                    <h3 class="text-lg font-medium text-gray-600 dark:text-gray-300">No orders yet</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1">Your order history will appear here</p>
+                    <a href="../pages/location.php" class="inline-block mt-4 px-4 py-2 bg-[#8B4513] dark:bg-amber-600 text-white rounded-lg hover:bg-[#6B3410] dark:hover:bg-amber-700 transition">
+                        Start Shopping
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
